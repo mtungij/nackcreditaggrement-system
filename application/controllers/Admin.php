@@ -10134,7 +10134,7 @@ public function sendsms($phone,$massage){
 	//public function sendsms(){f
 	//$phone = '255628323760';
 	//$massage = 'mapenzi yanauwa';
-	$api_key = 'Su33xZCzIDPALbL4';
+	$api_key = 'PE3CBF71w4MpSnkZ';
 	//$api_key = 'qFzd89PXu1e/DuwbwxOE5uUBn6';
 	//$curl = curl_init();
   $ch = curl_init();
