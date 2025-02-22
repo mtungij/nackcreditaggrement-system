@@ -2038,7 +2038,7 @@ public function create_withdrow_balance($customer_id){
     $this->form_validation->set_rules('method','method','required');
     $this->form_validation->set_rules('withdrow','withdrow','required');
     $this->form_validation->set_rules('loan_status','loan status','required');
-    // $this->form_validation->set_rules('code','Code','required');
+    $this->form_validation->set_rules('code','Code','required');
     $this->form_validation->set_rules('with_date','with date','required');
     $this->form_validation->set_rules('description','description','required');
     if ($this->form_validation->run() ) {
@@ -2051,7 +2051,7 @@ public function create_withdrow_balance($customer_id){
           $comp_id = $data['comp_id'];
           $description = $data['description'];
           $method = $data['method'];
-          // $new_code = $data['code'];
+          $new_code = $data['code'];
           $with_date = $data['with_date'];
           $loan_status = 'withdrawal';
           $new_balance = $withdrow_newbalance;
@@ -2077,7 +2077,7 @@ public function create_withdrow_balance($customer_id){
           $disburse_day = $day_loan->disburse_day;
           $dis_day = $day_loan->dis_date;
           $session = $day_loan->session;
-          // $code = $day_loan->code;
+          $code = $day_loan->code;
           $empl_id = $day_loan->empl_id;
           $loan_aprove = $day_loan->loan_aprove;
           $restoration = $day_loan->restration;
@@ -5500,7 +5500,7 @@ $days_remain = $this->queries->get_loan_active_customer($customer_id);
         //      exit();
        
         $this->sendsms($phone,$massage);
-        $this->session->set_flashdata('massage','Loan code sent please Wait');
+        $this->session->set_flashdata('massage','Nambari ya mkopo imetumwa kwa mteja. Ikiwa haijafika, tafadhali unaweza kuituma tena.');
         return redirect('oficer/data_with_depost/'.$customer_id);
       }
 
@@ -5541,7 +5541,7 @@ $days_remain = $this->queries->get_loan_active_customer($customer_id);
 public function sendsms($phone,$massage){
     //$phone = '0753871034';
     //$sms = 'mapenzi yanauwa';
-    $api_key = 'PE3CBF71w4MpSnkZ';
+    $api_key = '	PE3CBF71w4MpSnkZ';
     //$api_key = 'qFzd89PXu1e/DuwbwxOE5uUBn6';
     //$curl = curl_init();
 $ch = curl_init();
