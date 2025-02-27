@@ -2486,6 +2486,8 @@ $this->db->query("INSERT INTO tbl_outstand (`comp_id`,`loan_id`,`blanch_id`,`loa
           $customer_data = $this->queries->get_customerData($customer_id);
           $phone = $customer_data->phone_no;
           $full_name = $customer_data->f_name;
+          $middle_name = $customer_data->m_name;
+          $last_name = $customer_data->l_name;
           $admin_data = $this->queries->get_admin_role($comp_id);
           $remain_balance = $data_depost->balance;
           $old_balance = $remain_balance;
@@ -2763,43 +2765,52 @@ $total_depost = $this->queries->get_sum_dapost($loan_id);
 $loan_int = $loan_restoration->loan_int;
 $remain_loan = $loan_int - $total_depost->remain_balance_loan;
 $days_remain = $this->queries->get_loan_active_customer($customer_id);
-   $siku_baki = date("d-m-Y ", strtotime($days_remain->loan_end_date)); // Tarehe ya mwisho wa mkataba
-   $mkopo_tarehe = $days_remain->loan_stat_date; // Tarehe ya kuanza kwa mkopo
-   $today = date("Y-m-d");
-   $date = date("d/m/Y");
+$siku_baki = date("d-m-Y ", strtotime($days_remain->loan_end_date)); // Tarehe ya mwisho wa mkataba
+$mkopo_tarehe = $days_remain->loan_stat_date; // Tarehe ya kuanza kwa mkopo
+$today = date("Y-m-d");
+$date = date("d/m/Y");
+
+// Hesabu siku zilizobaki au zilizopita
+$remain_days = (strtotime($siku_baki) - strtotime($today)) / (60 * 60 * 24);
+
+if ($remain_days == 0) {
+    // // Mteja amelipa siku ya mwisho ya mkataba
+    // $massage = 'Mpendwa '.$full_name.', tumepokea malipo yako ya Mbele ya TZS '.number_format($new_balance).
+    // '. Deni lako lililobaki kufikia leo tarehe '.$date.' ni TZS '.number_format($remain_loan).
+    // '. Leo ni siku ya mwisho wa mkataba wako - '.$comp_name.'.';
+
+    $massage = 'Ndugu '.$full_name.', malipo yako ya '.number_format($new_balance).' yamepokelewa '.$date.'. Mpokeaji: '.$role.'. Deni lako ni '.number_format($remain_loan).'. Tarehe ya leo ni siku ya mwisho wa mkataba wako - '.$comp_name.'.';
+
+  
+
+} elseif ($remain_days > 0) {
+    // Mteja amelipa kabla ya mkataba kuisha
+    // $massage = 'Mpendwa '.$full_name.', tumepokea malipo yako ya TZS '.number_format($new_balance).
+    // ' tarehe '.$date.'. Deni lako lililobaki kufikia leo ni TZS '.number_format($remain_loan).'. '.
+    // 'Umebakiwa na siku '.$remain_days.' kabla ya mkataba kuisha tarehe '.date("d/m/Y", strtotime($siku_baki)).'. '.
+    // 'Asante kwa kufanya malipo - '.$comp_name.'.';
+
+$full_name = ucwords(strtolower($full_name));
+$middle_name = ucwords(strtolower($middle_name));
+$last_name = ucwords(strtolower($last_name));
+
+$massage = 'Ndugu ' . $full_name . ' ' . $middle_name . ' ' . $last_name . ', umelipa TSH ' . number_format($new_balance) . ' leo tarehe ' . $date . ' - ' . $comp_name . '. Mpokeaji: ' . $role . '. Deni ni TSH ' . number_format($remain_loan) . '.';
+
+
+
+} else {
+    // Mdaiwa sugu - amelipa baada ya tarehe ya mwisho ya mkataba
+    // $massage = 'Mpendwa '.$full_name.', malipo yako ya TZS '.number_format($new_balance).
+    // ' yamepokelewa tarehe '.$date.'. Tafadhali fahamu kuwa umechelewa kulipa na sasa unahesabika kama mdaiwa sugu. '.
+    // 'Deni lako lililobaki ni TZS '.number_format($remain_loan).'. Tafadhali lipa haraka ili kuepuka hatua zaidi. - '.$comp_name.'.';
+
+    $massage = 'Ndugu '.$full_name.', umelipa '.number_format($new_balance).' leo '.$date.' - '.$comp_name.'. Mpokeaji: '.$role.'. Malipo yako yamechelewa. Lipa haraka TZS '.number_format($remain_loan).' kuepuka hatua zaidi.';
+
+
    
-   // Hesabu siku zilizobaki au zilizopita
-   $remain_days = (strtotime($siku_baki) - strtotime($today)) / (60 * 60 * 24);
-   
-   if ($remain_days == 0) {
-       // // Mteja amelipa siku ya mwisho ya mkataba
-       // $massage = 'Mpendwa '.$full_name.', tumepokea malipo yako ya Mbele ya TZS '.number_format($new_balance).
-       // '. Deni lako lililobaki kufikia leo tarehe '.$date.' ni TZS '.number_format($remain_loan).
-       // '. Leo ni siku ya mwisho wa mkataba wako - '.$comp_name.'.';
 
-       $massage = 'Ndugu '.$full_name.', malipo yako ya '.number_format($new_balance).' yamepokelewa '.$date.'. Deni lako ni '.number_format($remain_loan).'. tarehe ya Leo ni siku ya mwisho wa mkataba wako - '.$comp_name.'.';
-     
+}
 
-   } elseif ($remain_days > 0) {
-       // Mteja amelipa kabla ya mkataba kuisha
-       // $massage = 'Mpendwa '.$full_name.', tumepokea malipo yako ya TZS '.number_format($new_balance).
-       // ' tarehe '.$date.'. Deni lako lililobaki kufikia leo ni TZS '.number_format($remain_loan).'. '.
-       // 'Umebakiwa na siku '.$remain_days.' kabla ya mkataba kuisha tarehe '.date("d/m/Y", strtotime($siku_baki)).'. '.
-       // 'Asante kwa kufanya malipo - '.$comp_name.'.';
-
-       $massage = 'Mpendwa '.$full_name.', malipo yako '.number_format($new_balance).' yamepokelewa '.$date.'. Deni lililobaki ni '.number_format($remain_loan).'. Umebakiwa na siku '.$remain_days.' mkataba uishe '.$siku_baki.''.$comp_name.'.';
-
-   } else {
-       // Mdaiwa sugu - amelipa baada ya tarehe ya mwisho ya mkataba
-       // $massage = 'Mpendwa '.$full_name.', malipo yako ya TZS '.number_format($new_balance).
-       // ' yamepokelewa tarehe '.$date.'. Tafadhali fahamu kuwa umechelewa kulipa na sasa unahesabika kama mdaiwa sugu. '.
-       // 'Deni lako lililobaki ni TZS '.number_format($remain_loan).'. Tafadhali lipa haraka ili kuepuka hatua zaidi. - '.$comp_name.'.';
-
-       $massage = 'Ndugu ' .$full_name.', TZS '.number_format($new_balance).' zimepokelewa tarehe'.$date.'. Umechelewa kulipa, deni lako ni TZS '.number_format($remain_loan).'. Lipa haraka kuepuka hatua zaidi. - '.$comp_name.'.';
-      
-
-   }
-   
 
 
            $loan_ID = $loan_id;
@@ -2916,43 +2927,52 @@ $total_depost = $this->queries->get_sum_dapost($loan_id);
 $loan_int = $loan_restoration->loan_int;
 $remain_loan = $loan_int - $total_depost->remain_balance_loan;
 $days_remain = $this->queries->get_loan_active_customer($customer_id);
-   $siku_baki = date("d-m-Y ", strtotime($days_remain->loan_end_date)); // Tarehe ya mwisho wa mkataba
-   $mkopo_tarehe = $days_remain->loan_stat_date; // Tarehe ya kuanza kwa mkopo
-   $today = date("Y-m-d");
-   $date = date("d/m/Y");
+$siku_baki = date("d-m-Y ", strtotime($days_remain->loan_end_date)); // Tarehe ya mwisho wa mkataba
+$mkopo_tarehe = $days_remain->loan_stat_date; // Tarehe ya kuanza kwa mkopo
+$today = date("Y-m-d");
+$date = date("d/m/Y");
+
+// Hesabu siku zilizobaki au zilizopita
+$remain_days = (strtotime($siku_baki) - strtotime($today)) / (60 * 60 * 24);
+
+if ($remain_days == 0) {
+    // // Mteja amelipa siku ya mwisho ya mkataba
+    // $massage = 'Mpendwa '.$full_name.', tumepokea malipo yako ya Mbele ya TZS '.number_format($new_balance).
+    // '. Deni lako lililobaki kufikia leo tarehe '.$date.' ni TZS '.number_format($remain_loan).
+    // '. Leo ni siku ya mwisho wa mkataba wako - '.$comp_name.'.';
+
+    $massage = 'Ndugu '.$full_name.', malipo yako ya '.number_format($new_balance).' yamepokelewa '.$date.'. Mpokeaji: '.$role.'. Deni lako ni '.number_format($remain_loan).'. Tarehe ya leo ni siku ya mwisho wa mkataba wako - '.$comp_name.'.';
+
+  
+
+} elseif ($remain_days > 0) {
+    // Mteja amelipa kabla ya mkataba kuisha
+    // $massage = 'Mpendwa '.$full_name.', tumepokea malipo yako ya TZS '.number_format($new_balance).
+    // ' tarehe '.$date.'. Deni lako lililobaki kufikia leo ni TZS '.number_format($remain_loan).'. '.
+    // 'Umebakiwa na siku '.$remain_days.' kabla ya mkataba kuisha tarehe '.date("d/m/Y", strtotime($siku_baki)).'. '.
+    // 'Asante kwa kufanya malipo - '.$comp_name.'.';
+
+$full_name = ucwords(strtolower($full_name));
+$middle_name = ucwords(strtolower($middle_name));
+$last_name = ucwords(strtolower($last_name));
+
+$massage = 'Ndugu ' . $full_name . ' ' . $middle_name . ' ' . $last_name . ', umelipa TSH ' . number_format($new_balance) . ' leo tarehe ' . $date . ' - ' . $comp_name . '. Mpokeaji: ' . $role . '. Deni ni TSH ' . number_format($remain_loan) . '.';
+
+
+
+} else {
+    // Mdaiwa sugu - amelipa baada ya tarehe ya mwisho ya mkataba
+    // $massage = 'Mpendwa '.$full_name.', malipo yako ya TZS '.number_format($new_balance).
+    // ' yamepokelewa tarehe '.$date.'. Tafadhali fahamu kuwa umechelewa kulipa na sasa unahesabika kama mdaiwa sugu. '.
+    // 'Deni lako lililobaki ni TZS '.number_format($remain_loan).'. Tafadhali lipa haraka ili kuepuka hatua zaidi. - '.$comp_name.'.';
+
+    $massage = 'Ndugu '.$full_name.', umelipa '.number_format($new_balance).' leo '.$date.' - '.$comp_name.'. Mpokeaji: '.$role.'. Malipo yako yamechelewa. Lipa haraka TZS '.number_format($remain_loan).' kuepuka hatua zaidi.';
+
+
    
-   // Hesabu siku zilizobaki au zilizopita
-   $remain_days = (strtotime($siku_baki) - strtotime($today)) / (60 * 60 * 24);
-   
-   if ($remain_days == 0) {
-       // // Mteja amelipa siku ya mwisho ya mkataba
-       // $massage = 'Mpendwa '.$full_name.', tumepokea malipo yako ya Mbele ya TZS '.number_format($new_balance).
-       // '. Deni lako lililobaki kufikia leo tarehe '.$date.' ni TZS '.number_format($remain_loan).
-       // '. Leo ni siku ya mwisho wa mkataba wako - '.$comp_name.'.';
 
-       $massage = 'Ndugu '.$full_name.', malipo yako ya '.number_format($new_balance).' yamepokelewa '.$date.'. Deni lako ni '.number_format($remain_loan).'. tarehe ya Leo ni siku ya mwisho wa mkataba wako - '.$comp_name.'.';
-     
+}
 
-   } elseif ($remain_days > 0) {
-       // Mteja amelipa kabla ya mkataba kuisha
-       // $massage = 'Mpendwa '.$full_name.', tumepokea malipo yako ya TZS '.number_format($new_balance).
-       // ' tarehe '.$date.'. Deni lako lililobaki kufikia leo ni TZS '.number_format($remain_loan).'. '.
-       // 'Umebakiwa na siku '.$remain_days.' kabla ya mkataba kuisha tarehe '.date("d/m/Y", strtotime($siku_baki)).'. '.
-       // 'Asante kwa kufanya malipo - '.$comp_name.'.';
-
-       $massage = 'Mpendwa '.$full_name.', malipo yako '.number_format($new_balance).' yamepokelewa '.$date.'. Deni lililobaki ni '.number_format($remain_loan).'. Umebakiwa na siku '.$remain_days.' mkataba uishe '.$siku_baki.''.$comp_name.'.';
-
-   } else {
-       // Mdaiwa sugu - amelipa baada ya tarehe ya mwisho ya mkataba
-       // $massage = 'Mpendwa '.$full_name.', malipo yako ya TZS '.number_format($new_balance).
-       // ' yamepokelewa tarehe '.$date.'. Tafadhali fahamu kuwa umechelewa kulipa na sasa unahesabika kama mdaiwa sugu. '.
-       // 'Deni lako lililobaki ni TZS '.number_format($remain_loan).'. Tafadhali lipa haraka ili kuepuka hatua zaidi. - '.$comp_name.'.';
-
-       $massage = 'Ndugu ' .$full_name.', TZS '.number_format($new_balance).' zimepokelewa tarehe'.$date.'. Umechelewa kulipa, deni lako ni TZS '.number_format($remain_loan).'. Lipa haraka kuepuka hatua zaidi. - '.$comp_name.'.';
-      
-
-   }
-   
 
           if ($company_data->sms_status == 'YES'){
              $this->sendsms($phone,$massage);

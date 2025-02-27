@@ -173,7 +173,7 @@
                                     <th>Collateral Name</th>
                                     <th>Collateral Condition</th>
                                     <th>Collateral Current Value</th>
-                                    <th>Collateral Photo</th>
+
                                         </tr>
                                     </thead>
                                    
@@ -185,7 +185,7 @@
                                             <td><?php echo $collaterals->description; ?> </td>
                                             <td><?php echo $collaterals->co_condition; ?></td>
                                             <td><?php echo number_format($collaterals->value); ?></td>
-                                            <td><img src="<?php echo base_url().'assets/img/'.$collaterals->file_name; ?>" class="img-thumbnail" style="width: 100px; height:100px;"></td>
+                                           
                                           </tr>
                                     <?php endforeach; ?>
 
@@ -202,7 +202,7 @@
                     <div class="card">
                           <div class="body">
                             <div class="header">
-                              <h2>LOAN HISTORY </h2>
+                              <h2>HISTORIA YA MIKOPO </h2>
                             </div>
                             <div class="table-responsive">
                                 <table class="table table-hover j-basic-example dataTable table-custom">
@@ -227,7 +227,7 @@
                                     <?php $no = 1; ?>
 <?php if (empty($loan_history)): ?>
     <tr>
-        <td colspan="5">No loan history</td>
+        <td colspan="5">hana mkopo kwenye system</td>
     </tr>
 <?php else: ?>
     <?php foreach ($loan_history as $history): ?>
