@@ -493,7 +493,7 @@
                     </div>
 
                     <div class="col-md-6 col-6">
-                        <span>Penart</span>
+                        <span>Penalt</span>
                         <input type="text" class="form-control"
                             value="<?php echo number_format($total_penart->total_penart - $total_deposit_penart->total_penart_paid); ?>.00"
                             readonly style="color:red">
@@ -582,18 +582,18 @@
                         <input type="date"  class="form-control" value="<?php echo $date; ?>" name="with_date"
                             required>
                     </div>
-                    <div class="col-md-6 col-6">
+                    <!-- <div class="col-md-6 col-6">
                         <span>code</span>
                         <input type="number" autocomplete="off" class="form-control" placeholder="Enter code"
                             name="code" required>
-                    </div>
+                    </div> -->
 
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="submit" class="btn btn-primary">Withdrawal</button>
-                <a href="<?php echo base_url("admin/get_loan_code_resend/{$customer->customer_id}") ?>"
-                    class="btn btn-primary">Resend Code</a>
+                <!-- <a href="</?php echo base_url("admin/get_loan_code_resend/{$customer->customer_id}") ?>"
+                    class="btn btn-primary">Resend Code</a> -->
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">CLOSE</button>
             </div>
             <?php echo form_close(); ?>
