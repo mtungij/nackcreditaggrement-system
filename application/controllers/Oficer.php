@@ -711,16 +711,23 @@ return true;
              $empl_id = $data['empl_id'];
              $phone = $data['phone_no'];
              $date_reg = $data['reg_date'];
-             $phone = '255'.$phone;
+           
 
-              // print_r($phone);
-              //     exit();
+        if (substr($phone, 0, 1) === '0') {
+          $phone = '255' . substr($phone, 1);
+      }
 
-             $this->load->model('queries');
-             $check = $this->queries->check_name($f_name,$m_name,$l_name,$phone);
-             if ($check == TRUE) {
-             $this->session->set_flashdata('error','This customer Aledy Registered');
-              return redirect('oficer/customer');
+      $this->load->model('queries');
+      $check = $this->queries->check_name($f_name, $m_name, $l_name,);
+      if ($check == TRUE) {
+          $this->session->set_flashdata('error', 'huyu mteja tayari alisajiliwa kwenye mfumo');
+          return redirect('admin/customer');
+
+          $phoneExists = $this->queries->check_phone($phone);
+          if ($phoneExists) {
+              $this->session->set_flashdata('error', 'Namba ya simu tayari ina mteja kwenye mfumo.');
+              return redirect('admin/customer');
+          }
              }elseif($check == FALSE){
               $date = date("Y-m-d");
              $customer_id = $customer_id = $this->insert_customer_detail($comp_id,$blanch_id,$empl_id,$f_name,$m_name,$l_name,$gender,$date_birth,$age,$phone,$region_id,$district,$ward,$street,$date_reg);;

@@ -3124,8 +3124,8 @@ public function get_totalLoanDoneGroup($group_id){
    	 return $data->row();
    }
 
-   public function check_name($f_name,$m_name,$l_name,$phone){
-		$data = $this->db->where(['f_name'=>$f_name , 'm_name'=>$m_name,'l_name'=>$l_name,'phone_no'=>$phone])
+   public function check_name($f_name,$m_name,$l_name){
+		$data = $this->db->where(['f_name'=>$f_name , 'm_name'=>$m_name,'l_name'=>$l_name])
     	        ->get('tbl_customer');
     	  if ($data->num_rows() > 0) {
     	  	return $data->row();
@@ -3133,6 +3133,14 @@ public function get_totalLoanDoneGroup($group_id){
     	  }
        }
 
+	   public function check_phone($phone){
+		$data = $this->db->where(['phone_no'=>$phone])
+    	        ->get('tbl_customer');
+    	  if ($data->num_rows() > 0) {
+    	  	return $data->row();
+    	  	
+    	  }
+       }
     public function check_national_Id($natinal_identity){
 		$data = $this->db->where(['natinal_identity'=>$natinal_identity])
     	        ->get('tbl_sub_customer');

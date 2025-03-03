@@ -1067,71 +1067,77 @@ $sqldata="UPDATE `tbl_ac_company` SET `comp_balance`= '$total_remain' WHERE  `tr
 	}
 
 
-	public function create_customer(){
-        $this->form_validation->set_rules('comp_id','company','required');
-        $this->form_validation->set_rules('blanch_id','blanch','required');
-        $this->form_validation->set_rules('f_name','First name','required');
-        $this->form_validation->set_rules('m_name','Middle name','required');
-        $this->form_validation->set_rules('l_name','Last name','required');
-        $this->form_validation->set_rules('gender','gender','required');
-        $this->form_validation->set_rules('date_birth','date_birth','required');
-        $this->form_validation->set_rules('phone_no','phone number','required');
-        $this->form_validation->set_rules('region_id','region','required');
-        $this->form_validation->set_rules('district','district','required');
-        $this->form_validation->set_rules('ward','ward','required');
-        $this->form_validation->set_rules('street','street','required');
-        $this->form_validation->set_rules('age','age','required');
-        $this->form_validation->set_rules('reg_date','reg_date','required');
-        $this->form_validation->set_rules('empl_id','Employee','required');
-        $this->form_validation->set_error_delimiters('<div class="text-danger">','</div>');
-        if ($this->form_validation->run()) {
-            $data = $this->input->post();
-             $f_name = $data['f_name'];
-             $m_name = $data['m_name'];
-             $l_name = $data['l_name'];
-             $comp_id = $data['comp_id'];
-             $blanch_id = $data['blanch_id'];
-             $gender = $data['gender'];
-             $district = $data['district'];
-             $region_id = $data['region_id'];
-             $date_birth = $data['date_birth'];
-             $ward = $data['ward'];
-             $street = $data['street'];
-             $age = $data['age'];
-             $empl_id = $data['empl_id'];
-             $phone = $data['phone_no'];
-             $date_reg = $data['reg_date'];
-             $phone = '255'.$phone;
+  public function create_customer(){
+    $this->form_validation->set_rules('comp_id','company','required');
+    $this->form_validation->set_rules('blanch_id','blanch','required');
+    $this->form_validation->set_rules('f_name','First name','required');
+    $this->form_validation->set_rules('m_name','Middle name','required');
+    $this->form_validation->set_rules('l_name','Last name','required');
+    $this->form_validation->set_rules('gender','gender','required');
+    $this->form_validation->set_rules('date_birth','date_birth','required');
+    $this->form_validation->set_rules('phone_no','phone number','required');
+    $this->form_validation->set_rules('region_id','region','required');
+    $this->form_validation->set_rules('district','district','required');
+    $this->form_validation->set_rules('ward','ward','required');
+    $this->form_validation->set_rules('street','street','required');
+    $this->form_validation->set_rules('age','age','required');
+    $this->form_validation->set_rules('reg_date','reg_date','required');
+    $this->form_validation->set_rules('empl_id','Employee','required');
+    $this->form_validation->set_error_delimiters('<div class="text-danger">','</div>');
 
-              // print_r($phone);
-              //     exit();
+    if ($this->form_validation->run()) {
+        $data = $this->input->post();
+        $f_name = $data['f_name'];
+        $m_name = $data['m_name'];
+        $l_name = $data['l_name'];
+        $comp_id = $data['comp_id'];
+        $blanch_id = $data['blanch_id'];
+        $gender = $data['gender'];
+        $district = $data['district'];
+        $region_id = $data['region_id'];
+        $date_birth = $data['date_birth'];
+        $ward = $data['ward'];
+        $street = $data['street'];
+        $age = $data['age'];
+        $empl_id = $data['empl_id'];
+        $phone = $data['phone_no'];
+        $date_reg = $data['reg_date'];
 
-             $this->load->model('queries');
-             $check = $this->queries->check_name($f_name,$m_name,$l_name,$phone);
-             if ($check == TRUE) {
-             $this->session->set_flashdata('error','This customer Aledy Registered');
-              return redirect('admin/customer');
-             }elseif($check == FALSE){
-              $date = date("Y-m-d");
-             $customer_id = $customer_id = $this->insert_customer_detail($comp_id,$blanch_id,$empl_id,$f_name,$m_name,$l_name,$gender,$date_birth,$age,$phone,$region_id,$district,$ward,$street,$date_reg);;
-             $number = 'C'.substr($date ,0, 4).substr($date ,5, 2).$customer_id;
-             $this->update_customer_number($customer_id,$number);
-             $this->insert_sub_customer_data($customer_id);
-                //print_r($customer_id);
-                 //exit();
-             if ($customer_id > 0){
-                    $this->session->set_flashdata('massage','');
-             }else{
-                    $this->session->set_flashdata('error','');
-                }
-            return redirect('admin/customer_details/'.$customer_id);
-             }
-                  //      echo "<pre>";
-                  // print_r($check);
-                          //exit();
-             }
-             $this->customer_details();
+        // Convert phone number: If it starts with '0', replace '0' with '255'
+        if (substr($phone, 0, 1) === '0') {
+            $phone = '255' . substr($phone, 1);
         }
+
+        $this->load->model('queries');
+        $check = $this->queries->check_name($f_name, $m_name, $l_name,);
+        if ($check == TRUE) {
+            $this->session->set_flashdata('error', 'huyu mteja tayari alisajiliwa kwenye mfumo');
+            return redirect('admin/customer');
+
+            $phoneExists = $this->queries->check_phone($phone);
+            if ($phoneExists) {
+                $this->session->set_flashdata('error', 'Namba ya simu tayari ina mteja kwenye mfumo.');
+                return redirect('admin/customer');
+            }
+
+        } elseif ($check == FALSE) {
+            $date = date("Y-m-d");
+            $customer_id = $this->insert_customer_detail($comp_id, $blanch_id, $empl_id, $f_name, $m_name, $l_name, $gender, $date_birth, $age, $phone, $region_id, $district, $ward, $street, $date_reg);
+            $number = 'C' . substr($date, 0, 4) . substr($date, 5, 2) . $customer_id;
+            $this->update_customer_number($customer_id, $number);
+            $this->insert_sub_customer_data($customer_id);
+
+            if ($customer_id > 0) {
+                $this->session->set_flashdata('massage', 'mteja kasajiliwa kikamilifu');
+            } else {
+                $this->session->set_flashdata('error', 'Failed to create customer');
+            }
+            return redirect('admin/customer_details/' . $customer_id);
+        }
+    }
+    $this->customer_details();
+}
+
 
 
     public function insert_customer_detail($comp_id,$blanch_id,$empl_id,$f_name,$m_name,$l_name,$gender,$date_birth,$age,$phone,$region_id,$district,$ward,$street,$date_reg){
