@@ -10,7 +10,7 @@
                         <ul class="breadcrumb">
                             <li class="breadcrumb-item"><a href="<?php echo base_url("admin/index"); ?>"><i class="icon-home"></i></a></li>                            
                             <li class="breadcrumb-item active">Loan</li>
-                            <li class="breadcrumb-item active">Collateral Session</li>
+                            <li class="breadcrumb-item active">DHAMANA ZA MKOPO</li>
                         </ul>
                     </div>            
                  
@@ -28,45 +28,40 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="header">
-                            <h2>Add Collateral</h2>
+                            <h2>DHAMANA ZA MKOPO</h2>
                         </div>
                         <div class="body">
                             <?php echo form_open("admin/create_colateral/{$loan_attach->loan_id}") ?>
                             <div class="row">
                                 <div class="col-lg-6">
                             <div class="form-group">
-                              <span>Name:</span>
+                              <span>JINA LA DHAMANA:</span>
                                 <input type="text" class="form-control" id="description" placeholder="Enter Name" name="description" autocomplete="off">
                             </div>
                             </div>
                             <div class="col-lg-6">
                             <div class="form-group">
-                              <span>Condition:</span>
-                                <input type="text" class="form-control" id="" placeholder="Enter Condition" name="co_condition" autocomplete="off">
+                              <span>HALI YA DHAMANA:</span>
+                                <input type="text" class="form-control" id="" placeholder="mfano inalipa mkopo" name="co_condition" autocomplete="off">
                             </div>
                             </div>
 
                             <div class="col-lg-6">
                             <div class="form-group">
-                              <span>Cullent colateral Value:</span>
-                                <input type="number" class="form-control" id="" placeholder="Enter value" name="value" autocomplete="off">
+                              <span>THAMANI YA DHAMANA KWA SASA:</span>
+                                <input type="number" class="form-control" id="" placeholder="hapa kadiria bei ikitokea kuuzwa" name="value" autocomplete="off">
                             </div>
                             </div>
 
-                            <div class="col-lg-6">
-                            <div class="form-group">
-                              <span>Attachment/picture:</span>
-                                <input type="file" class="form-control" id="attach" placeholder="Enter Middle name" name="file_name" autocomplete="off">
-                            </div>
-                            </div>
+                           
 
                             <input type="hidden" name="loan_id"  id="loan_id" value="<?php echo $loan_attach->loan_id; ?>">
                                
                                 </div>
                                  <br>
                                 <div class="text-center">
-                                <button type="submit" class="btn btn-primary"><i class="icon-drawer">Save</i></button>
-                                <a href="<?php echo base_url("admin/local_government/{$loan_attach->loan_id}"); ?>" class="btn btn-primary">Next</a>
+                                <button type="submit" class="btn btn-primary"><i class="icon-drawer">Hifadhi</i></button>
+                                <a href="<?php echo base_url("admin/local_government/{$loan_attach->loan_id}"); ?>" class="btn btn-primary">Mbele</a>
                                 </div>
                             <?php echo form_close();  ?>
                         </div>

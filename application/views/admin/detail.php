@@ -23,7 +23,7 @@
 <div class="col-lg-6 col-md-8 col-sm-12">
     <ul class="breadcrumb">
         <li class="breadcrumb-item"><a href="<?php echo base_url("admin/index"); ?>"><i class="icon-home"></i></a></li>                            
-        <li class="breadcrumb-item active">Customer passport</li>
+        <li class="breadcrumb-item active">Passport Size Ya mteja</li>
     </ul>
 </div>            
 
@@ -49,7 +49,7 @@
 <div class="col-md-12">
 <div class="card">
     <div class="header">
-        <h2>Customer Passport</h2>
+        <h2>Passport ya Mteja</h2>
     </div>
     <div class="body">
         <?php //echo form_open("admin/update_customerID/{$data_customer->customer_id}") ?>

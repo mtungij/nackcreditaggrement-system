@@ -10,7 +10,7 @@
                         <ul class="breadcrumb">
                             <li class="breadcrumb-item"><a href="<?php echo base_url("admin/index"); ?>"><i class="icon-home"></i></a></li>                            
                             <li class="breadcrumb-item active">Loan</li>
-                            <li class="breadcrumb-item active">Loan Pending</li>
+                            <li class="breadcrumb-item active">Maombi ya mikopo</li>
                         </ul>
                     </div>            
                  
@@ -28,7 +28,7 @@
                 <div class="col-lg-12">
                     <div class="card">
                          <div class="header">
-                            <h2>Loan Pending List </h2>    
+                            <h2>Mikopo ya kupitisha</h2>    
                              </div>
                           <div class="body">
                             <div class="table-responsive">
@@ -36,16 +36,15 @@
                                     <thead class="thead-primary">
                                         <tr>
                                     <th>S/No.</th>
-                                    <th>Loan AC/No</th>
-                                    <th>customer name</th>
-                                    <th>Phone Number</th>
+                                    <th>JINA</th>
+                                    <th>NAMBA YA SIMU</th>
                                     <!-- <th>Busines/Job Name</th> -->
-                                    <th>Branch</th>
-                                    <th>Loan Amount</th>
-                                    <th>Loan Duration</th>
-                                    <th>Number of repayments</th>
-                                    <th>Loan Status</th>
-                                    <th>Customer Status</th>
+                                    <th>TAWI</th>
+                                    <th>KIASI CHA MKOPO</th>
+                                    <th>Muda wa mkopo</th>
+                                    <th>idadi ya malipo</th>
+                                    <th>hali ya mkopo</th>
+                                    <th>hali ya mteja</th>
                                     <th>Action</th>
                                         </tr>
                                     </thead>
@@ -62,7 +61,6 @@
                                     ?>
                                               <tr>
                                     <td><?php echo $no++; ?>.</td>
-                                    <td><?php echo $loan_pendings->loan_code; ?></td>
                                     <td><?php echo $loan_pendings->f_name; ?> <?php echo substr($loan_pendings->m_name, 0,1); ?> <?php echo $loan_pendings->l_name; ?></td>
                                     <td><?php echo $loan_pendings->phone_no; ?></td>
                                     <!-- <td><?php //echo $loan_pendings->bussiness_type; ?></td> -->
@@ -99,10 +97,10 @@
                                         <td>
                                             <?php if (@$customer_condition->total_loan == 1) {
                                              ?>
-                                            <span class="badge badge-success">New Customer</span>
+                                            <span class="badge badge-success">Mteja Mpya</span>
                                             <?php }else{ ?>
                                             <?php //echo $customer_condition->total_loan; ?>
-                                            <span class="badge badge-warning">Old Customer</span>
+                                            <span class="badge badge-warning">Mteja wa zamani</span>
                                             <?php } ?>
                                                 
                                             </td>   <td>
@@ -113,11 +111,11 @@
                    Action
                     </button>
                     <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                    <a class="dropdown-item" href="<?php echo base_url("admin/view_aggrement/{$loan_pendings->customer_id}/{$loan_pendings->comp_id}"); ?>" target="_blank">
-    <i class="icon-eye"></i> Loan Agreement
-</a>
-                    <a class="dropdown-item" href="<?php echo base_url("admin/view_Dataloan/{$loan_pendings->customer_id}/{$loan_pendings->comp_id}") ?>"><i class="icon-eye">view</i></a>
-                     <a class="dropdown-item" href="<?php echo base_url("admin/delete_loan/{$loan_pendings->loan_id}") ?>" onclick="return confirm('Are you sure?')"><i class="icon-trash">Delete</i></a>
+                    <!-- <a class="dropdown-item" href="</?php echo base_url("admin/view_aggrement/{$loan_pendings->customer_id}/{$loan_pendings->comp_id}"); ?>" target="_blank">
+    <i class="icon-eye"></i> mkataba
+</a> -->
+                    <a class="dropdown-item" href="<?php echo base_url("admin/view_Dataloan/{$loan_pendings->customer_id}/{$loan_pendings->comp_id}") ?>"><i class="icon-eye">Ingia</i></a>
+                     <a class="dropdown-item" href="<?php echo base_url("admin/delete_loan/{$loan_pendings->loan_id}") ?>" onclick="return confirm('Are you sure?')"><i class="icon-trash">Futa</i></a>
                     </div>
                 </div>
                 </div>

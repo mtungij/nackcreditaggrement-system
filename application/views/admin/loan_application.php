@@ -10,7 +10,7 @@
                         <ul class="breadcrumb">
                             <li class="breadcrumb-item"><a href="<?php echo base_url("admin/index"); ?>"><i class="icon-home"></i></a></li>                            
                             <li class="breadcrumb-item active">Loan</li>
-                             <li class="breadcrumb-item active">Loan Aplication</li>
+                             <li class="breadcrumb-item active">Maombi ya Mkopo/li>
                         </ul>
                     </div>            
                  
@@ -36,7 +36,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="header">
-                            <h2>Search Customer</h2>
+                            <h2>Tafuta Mteja</h2>
                         </div>
                         <div class="body">
                             <?php echo form_open_multipart("admin/search_customer"); ?>
@@ -48,7 +48,7 @@
                                  <div class="col-lg-8 col-12">
                                    
                                  <select type="number" class="form-control select2" name="customer_id" required>
-                                     <option value="">Sarch Customer</option>
+                                     <option value="">Tafuta Mteja</option>
                                      <?php foreach ($customer as $customers): ?>
                                      <option value="<?php echo $customers->customer_id; ?>"><?php echo $customers->f_name; ?> <?php echo $customers->m_name; ?> <?php echo $customers->l_name; ?> / <?php echo $customers->customer_code; ?></option>
                                  <?php endforeach; ?>
@@ -64,7 +64,7 @@
                                 
                             </div>
                                 <div class="text-center">
-                                <button type="submit" class="btn btn-primary"><i class="icon-pencil">Search</i></button>
+                                <button type="submit" class="btn btn-primary"><i class="icon-pencil">Tafuta</i></button>
                                
                                 </div>
                             

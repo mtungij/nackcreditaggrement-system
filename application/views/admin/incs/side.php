@@ -42,51 +42,50 @@
                 <div class="tab-pane active" id="menu">
                     <nav class="sidebar-nav">
                         <ul class="main-menu metismenu">
-                            <li class="active"><a href="<?php echo base_url("admin/index"); ?>"><i class="icon-home"></i><span>Dashboard</span></a></li>
+                            <li class="active"><a href="<?php echo base_url("admin/index"); ?>"><i class="icon-home"></i><span>Dashibodi</span></a></li>
 
-                          <li><a href="javascript:void(0);" class="has-arrow"><i class="icon-settings"></i><span>Setup</span> </a>
+                          <li><a href="javascript:void(0);" class="has-arrow"><i class="icon-settings"></i><span>Mpangilio</span> </a>
                                 <ul>
-                                    <li><a href="<?php echo base_url("admin/loan_category"); ?>">Loan Category</a></li>
-                                    <li><a href="<?php echo base_url("admin/loan_fee") ?>">Loan Fee</a></li>
-                                    <li><a href="<?php echo base_url("admin/penart_setting"); ?>">Penart Setting</a></li>
-                                    <li><a href="<?php echo base_url("admin/formular_setting"); ?>">Interest Formular Setting</a></li>
-                                    <li><a href="<?php echo base_url("admin/transaction_account"); ?>">Transaction Accounts</a></li>
+                                    <li><a href="<?php echo base_url("admin/loan_category"); ?>">Aina za Mkopo</a></li>
+                                    <li><a href="<?php echo base_url("admin/loan_fee") ?>">Ada ya Mkopo</a></li>
+                                    <li><a href="<?php echo base_url("admin/penart_setting"); ?>">Faini Lala</a></li>
+                                    <li><a href="<?php echo base_url("admin/formular_setting"); ?>">Formula ya Riba</a></li>
+                                    <li><a href="<?php echo base_url("admin/transaction_account"); ?>">Akaunti za Miamala</a></li>
                                 </ul>
                             </li>
 
-                          <li><a href="javascript:void(0);" class="has-arrow"><i class="icon-wallet"></i><span>Capital</span> </a>
+                          <li><a href="javascript:void(0);" class="has-arrow"><i class="icon-wallet"></i><span>Mtaji</span> </a>
                                 <ul>
-                                    <li><a href="<?php echo base_url("admin/shareHolder"); ?>">Share Holders</a></li>
-                                    <li><a href="<?php echo base_url("admin/capital"); ?>">Add Capitals</a></li>
-                                    <li><a href="<?php echo base_url("admin/transfar_amount"); ?>">Float</a></li>
-                                    <li><a href="javascript:;">Float From Blanch Account to Company Account </a></li>
+                                    <li><a href="<?php echo base_url("admin/shareHolder"); ?>">Wanahisa</a></li>
+                                    <li><a href="<?php echo base_url("admin/capital"); ?>">Weka Mtaji</a></li>
+                                    <li><a href="<?php echo base_url("admin/transfar_amount"); ?>">Ongezeko</a></li>
                                 </ul>
                             </li>
-                             <li><a href="<?php echo base_url("admin/blanch"); ?>"><i class="icon-size-actual"></i>Branch</a></li>
+                             <li><a href="<?php echo base_url("admin/blanch"); ?>"><i class="icon-size-actual"></i>Sajiri Tawi</a></li>
                              <!-- <li><a href="javascript:;"><i class="icon-users"></i>Group</a></li> -->
                             
-                            <li><a href="javascript:void(0);" class="has-arrow"><i class="icon-wallet"></i><span>Income</span> </a>
+                            <li><a href="javascript:void(0);" class="has-arrow"><i class="icon-wallet"></i><span>FomuFaini</span> </a>
                                 <ul>
-                                    <li><a href="<?php echo base_url("admin/income_detail"); ?>">Register Income</a></li>
-                                    <li><a href="<?php echo base_url("admin/income_dashboard"); ?>">Fain</a></li>
+                                    <li><a href="<?php echo base_url("admin/income_detail"); ?>">Sajili Faini</a></li>
+                                    <li><a href="<?php echo base_url("admin/income_dashboard"); ?>">Lipa Fain</a></li>
                                     <li><a href="<?php echo base_url("admin/deducted_income"); ?>">Fomu</a></li>
                                     <!-- <li><a href="javascript:;">Transfor Income Branch To Branch</a></li>
                                     <li><a href="javascript:;">Transfor Income Branch To Company</a></li> -->
                                     <li><a href="<?php echo base_url("admin/income_balance"); ?>">Income Balance</a></li>
                                 </ul>
                             </li>
-                            <li><a href="javascript:void(0);" class="has-arrow"><i class="icon-credit-card"></i><span>Expenses</span> </a>
+                            <li><a href="javascript:void(0);" class="has-arrow"><i class="icon-credit-card"></i><span>Matumizi</span> </a>
                                 <ul>
-                                    <li><a href="<?php echo base_url("admin/expenses"); ?>">Register Expenses</a></li>
-                                    <li><a href="<?php echo base_url("admin/expnses_requisition_form"); ?>">Request Expenses</a></li>
-                                    <li><a href="<?php echo base_url("admin/get_recomended_request"); ?>">All Expenses Request</a></li>
+                                    <li><a href="<?php echo base_url("admin/expenses"); ?>">Sajili Matumizi</a></li>
+                                    <li><a href="<?php echo base_url("admin/expnses_requisition_form"); ?>">Ombi la Matumizi</a></li>
+                                    <li><a href="<?php echo base_url("admin/get_recomended_request"); ?>">Matumizi yote</a></li>
                                 </ul>
                             </li>
 
-                            <li><a href="javascript:void(0);" class="has-arrow"><i class="icon-layers"></i><span>Employee</span> </a>
+                            <li><a href="javascript:void(0);" class="has-arrow"><i class="icon-layers"></i><span>Wafanyakazi</span> </a>
                                 <ul>
-                                    <li><a href="<?php echo base_url("admin/employee"); ?>">Register Employee</a></li>
-                                    <li><a href="<?php echo base_url("admin/all_employee"); ?>">All Employee</a></li>
+                                    <li><a href="<?php echo base_url("admin/employee"); ?>">Sajili Mfanyakazi</a></li>
+                                    <li><a href="<?php echo base_url("admin/all_employee"); ?>">Wafanyakazi Wote</a></li>
                                   <!--   <li><a href="javascript:void(0);">All Branchs & Employee</a></li>
                                     <li><a href="javascript:void(0);">Employee Leave</a></li>
                                     <li><a href="javascript:void(0);">Sallary Sheet</a></li>
@@ -96,33 +95,32 @@
                             </li>
                             
                             <li>
-                                <a href="#Authentication" class="has-arrow"><i class="icon-user"></i><span>Customer</span></a>
+                                <a href="#Authentication" class="has-arrow"><i class="icon-user"></i><span>Wateja</span></a>
                                 <ul>
-                                    <li><a href="<?php echo base_url("admin/customer"); ?>">Register Customer</a></li>
-                                    <li><a href="<?php echo base_url("admin/all_customer"); ?>">All Customer</a></li>
+                                    <li><a href="<?php echo base_url("admin/customer"); ?>">Sajili mteja</a></li>
+                                    <li><a href="<?php echo base_url("admin/all_customer"); ?>">Wateja wote</a></li>
                                 </ul>
                             </li>
                             <li>
-                                <a href="#Widgets" class="has-arrow"><i class="icon-list"></i><span>Loan</span></a>
+                                <a href="#Widgets" class="has-arrow"><i class="icon-list"></i><span>Mikopo</span></a>
                                 <ul>
-                                    <li><a href="<?php echo base_url("admin/loan_application"); ?>">Loan Application</a></li>
-                                    <li><a href="<?php echo base_url("admin/loan_pending"); ?>">Loan Pending Approve</a></li>
+                                    <li><a href="<?php echo base_url("admin/loan_application"); ?>">Omba Mkopo</a></li>
+                                    <li><a href="<?php echo base_url("admin/loan_pending"); ?>">Mikopo Inasubiri Kupitishwa</a></li>
                                     
-                                    <li><a href="<?php echo base_url("admin/disburse_loan"); ?>">Loan Disbursed</a></li>
-                                    <li><a href="<?php echo base_url("admin/loan_withdrawal"); ?>">Loan Withdrawal</a></li>
-                                    <li><a href="<?php echo base_url("admin/all_loan_lejected"); ?>">Loan Rejected</a></li>
+                                    <li><a href="<?php echo base_url("admin/disburse_loan"); ?>">Mkopo umepitishwa</a></li>
+                                    <li><a href="<?php echo base_url("admin/loan_withdrawal"); ?>">Mikopo Gawiwa</a></li>
+                                    <li><a href="<?php echo base_url("admin/all_loan_lejected"); ?>">Mkopo kataliwa</a></li>
                                     <!-- <li><a href="javascript:;">Individual Loan</a></li>
                                     <li><a href="javascript:;">Group Loan</a></li> -->
                                 </ul>
                             </li>
-                            <li><a href="<?php echo base_url("admin/teller_dashboard"); ?>"><i class="icon-list"></i>Teller Dashboard</a></li>
+                            <li><a href="<?php echo base_url("admin/teller_dashboard"); ?>"><i class="icon-list"></i>Gaw/Lipisha</a></li>
 
                             <li>
 
-                                <a href="#Pages" class="has-arrow"><i class="icon-docs"></i><span>Commnication</span></a>
+                                <a href="#Pages" class="has-arrow"><i class="icon-docs"></i><span>Mawasiliano</span></a>
                                 <ul>
-                                    <li><a href="<?php echo base_url("admin/reminder_sms"); ?>">Via SMS</a> </li>
-                                    <li><a href="javascript:;">Via Email</a></li>
+                                    <li><a href="<?php echo base_url("admin/reminder_sms"); ?>">Kupitia sms</a> </li>
                                 </ul>
                             </li>
                         </ul>
@@ -133,7 +131,7 @@
                 <div class="tab-pane" id="sub_menu">
                     <nav class="sidebar-nav">
                         <ul class="main-menu metismenu">
-                        	<li><a href="<?php echo base_url("admin/cash_transaction"); ?>"><i class="icon-wallet"></i>Cash Transaction</a></li>
+                        	<li><a href="<?php echo base_url("admin/cash_transaction"); ?>"><i class="icon-wallet"></i>Malipo Yote</a></li>
                             <li>
                                 <a href="#uiElements" class="has-arrow"><i class="icon-wallet"></i> <span>Report za Mwezi</span></a>
                                 <ul>
@@ -142,26 +140,18 @@
                                     <li><a href="<?php echo base_url("admin/mikopo_chefuchefu") ?>">Mikopo chefuchefu</a></li>
                                 </ul>
                             </li>
-                        	<li><a href="<?php echo base_url("admin/blanchiwise_report"); ?>"><i class="icon-list"></i>Branch Wise Report</a></li>
-                        	<li><a href="<?php echo base_url("admin/loan_pending_time"); ?>"><i class="icon-list"></i>Loan Pending</a></li>
-                        	<li><a href="<?php echo base_url("admin/repaymant_data"); ?>"><i class="icon-list"></i>Loan Repayment</a></li>
-                        	<li><a href="<?php echo base_url("admin/Default_loan"); ?>"><i class="icon-list"></i>Default Loan</a></li>
+                        	<li><a href="<?php echo base_url("admin/blanchiwise_report"); ?>"><i class="icon-list"></i>Ripoti ya Kila Tawi</a></li>
+                        	<li><a href="<?php echo base_url("admin/loan_pending_time"); ?>"><i class="icon-list"></i>Lala Nje</a></li>
+                        	<!-- <li><a href="</?php echo base_url("admin/repaymant_data"); ?>"><i class="icon-list"></i>Loan Repayment</a></li> -->
+                        	<li><a href="<?php echo base_url("admin/Default_loan"); ?>"><i class="icon-list"></i>Madeni Sugu</a></li>
                         	<li><a href="<?php echo base_url("admin/loan_collection"); ?>"><i class="icon-list"></i>Loan Collection</a></li>
                         	<!-- <li><a href="javascript:;"><i class="icon-list"></i>Customer Loan Report</a></li> -->
-                        	<li><a href="<?php echo base_url("admin/customer_account_statement"); ?>"><i class="icon-list"></i>Customer Account</a></li>
-                        	<li><a href="<?php echo base_url("admin/today_recevable_loan"); ?>"><i class="icon-list"></i>Today Receivable</a></li>
-                        	<li><a href="<?php echo base_url("admin/today_receved_loan"); ?>"><i class="icon-list"></i>Today Received</a></li>
-                        	<li><a href="javascript:;"><i class="icon-list"></i>Teller Officer Transaction</a></li>
-                        	<li><a href="javascript:;"><i class="icon-list"></i>Branch Officer Transaction</a></li>
-                            <li>
-                                <a href="#uiElements" class="has-arrow"><i class="icon-wallet"></i> <span>Accounting Report</span></a>
-                                <ul>
-                                    <li><a href="javascript:;">Profit & Loss</a></li>
-                                    <li><a href="ui-tabs.html">Cash flow</a></li>
-                                    <li><a href="ui-buttons.html">Saving Deposit</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="<?php echo base_url("admin/daily_report"); ?>"><i class="icon-wallet"></i>Daily Report</a></li>                            
+                        	<li><a href="<?php echo base_url("admin/customer_account_statement"); ?>"><i class="icon-list"></i>Statementi ya Mteja</a></li>
+                        	<li><a href="<?php echo base_url("admin/today_recevable_loan"); ?>"><i class="icon-list"></i>Makusanyo Ya Leo</a></li>
+                        	<li><a href="<?php echo base_url("admin/today_receved_loan"); ?>"><i class="icon-list"></i>Malipo ya Leo</a></li>
+
+                          
+                        
                         </ul>
                     </nav>
                     <br><br><br>

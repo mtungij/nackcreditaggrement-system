@@ -42,23 +42,23 @@
                             <div class="row">
 
                                 <div class="col-lg-4 col-6">
-                                    <span>First Name:</span>
+                                    <span>Jina La Kwanza:</span>
                             <input type="text" name="f_name" placeholder="First name" autocomplete="off" class="form-control input-sm" required>
                                 </div>
                                 <div class="col-lg-4 col-6">
-                                    <span>Middle name:</span>
+                                    <span>Jina La Kati:</span>
                                     <input type="text" name="m_name" placeholder="Middle name" autocomplete="off" class="form-control input-sm" required>
                                 </div>
                                 <input type="hidden" name="comp_id" value="<?php echo $_SESSION['comp_id']; ?>">
                                 <div class="col-lg-4 col-6">
-                                    <span>Last name:</span>
+                                    <span>Jina La Mwisho:</span>
                                     <input type="text" name="l_name" placeholder="Last name" autocomplete="off" class="form-control input-sm" required>
                                 </div>
 
                                 <div class="col-lg-3 col-6">
-                                    <span>Branch:</span>
+                                    <span>Tawi:</span>
                                 <select type="number" name="blanch_id" class="form-control select2 input-sm" id="blanch" required class="form-control input-sm">
-                                <option value="">Select Blanch</option>
+                                <option value="">chagua tawi</option>
                                 <?php foreach ($blanch as $blanchs): ?>
                                 <option value="<?php echo $blanchs->blanch_id; ?>"><?php echo $blanchs->blanch_name; ?></option>
                                 <?php endforeach;?>
@@ -66,33 +66,33 @@
                                 </div>
 
                                 <div class="col-lg-3 col-6">
-                                    <span>Employee:</span>
+                                    <span>Mfanyakazi:</span>
                                 <select type="number" name="empl_id" class="form-control select2 input-sm" id="empl" required class="form-control input-sm">
-                                <option value="">Select Employee</option>
+                                <option value="">chagua mfanyakazi</option>
                                 
                             </select>
                                 </div>
                         
                                 <div class="col-lg-3 col-6">
-                                    <span>Gender:</span>
+                                    <span>Jinsia:</span>
                                 <select type="text" name="gender" class="form-control select2 input-sm" required class="form-control input-sm">
-                                <option value="">Select Gender</option>
-                                <option value="male">Male</option>
-                                <option value="female">Female</option>
+                                <option value="">Chagua Jinsia</option>
+                                <option value="male">Mume</option>
+                                <option value="female">Mke</option>
                             </select>
                                 </div>
                                 <div class="col-lg-3 col-6">
-                                    <span>Date of Birth:</span>
+                                    <span>Tarehe Ya kuzaliwa:</span>
                             <input type="date" name="date_birth" onchange="getDate(this.value)" placeholder="Date of Birth" autocomplete="off" class="form-control input-sm" required>
                                 </div>
                                 <div class="col-lg-4 col-6">
-                                    <span>Year:</span>
+                                    <span>Miaka Ya Mteja:</span>
                             <input type="" id="age" name="age" readonly class="form-control input-sm" value="" required>
                             <?php $date = date("Y-m-d"); ?>
                             <input type="hidden" name="reg_date" value="<?php echo $date; ?>">
                                 </div>
                                     <div class="col-lg-4 col-6">
-                                    <span>Phone Number:</span>
+                                    <span>Namba ya simu:</span>
                             <input type="number" name="phone_no" placeholder="Eg,7538, 6283" autocomplete="off" class="form-control input-sm" required >
                                 </div>
                              <!--        <div class="col-lg-4 form-group-sub">
@@ -106,22 +106,22 @@
                                 </div> -->
                                 <input type="hidden" name="region_id" value="1">
                                     <div class="col-lg-4 col-6">
-                                    <span>District:</span>
+                                    <span>Wilaya:</span>
                             <input type="text" name="district" placeholder="district" autocomplete="off" class="form-control input-sm" required>
                                 </div>
                                     <div class="col-lg-6 col-6">
-                                    <span>Ward:</span>
+                                    <span>Kata:</span>
                             <input type="text" name="ward" placeholder="Ward" autocomplete="off" class="form-control input-sm" required>
                                 </div>
                                         <div class="col-lg-6 col-6">
-                                    <span>Street:</span>
+                                    <span>Mtaa:</span>
                             <input type="text" name="street" placeholder="street" autocomplete="off" class="form-control input-sm" required>
                                 </div>
                                 <br>
                                 </div>
                             </div>
                                 <div class="text-center">
-                                <button type="submit" class="btn btn-primary"><i class="icon-pencil">Next</i></button>
+                                <button type="submit" class="btn btn-primary"><i class="icon-pencil">Hifadhi</i></button>
                                 </div>
                             
                             <?php echo form_close();  ?>
@@ -170,7 +170,7 @@ $('#empl').html(data);
 }
 else
 {
-$('#empl').html('<option value="">Select Employee</option>');
+$('#empl').html('<option value="">chagua mfanyakazi</option>');
 //$('#district').html('<option value="">All</option>');
 }
 });

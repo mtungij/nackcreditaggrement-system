@@ -10032,7 +10032,7 @@ public function send_staff_sms($empl_id,$comp_id,$loan_status){
 
 
  	    
-        // print_r($compdata);
+        // print_r( $blanch);
         //    exit();
         
         $this->load->view('admin/blanch_panel',['blanch'=>$blanch,'blanch_datas'=>$blanch_datas,'blanch_id'=>$blanch_id,'compdata'=>$compdata]);

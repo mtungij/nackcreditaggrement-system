@@ -25,7 +25,7 @@
                         <ul class="breadcrumb">
                             <li class="breadcrumb-item"><a href="<?php echo base_url("admin/index"); ?>"><i class="icon-home"></i></a></li>
                             
-                            <li class="breadcrumb-item active">Local government</li>
+                            <li class="breadcrumb-item active">Passport ya mkopo</li>
                             
                         </ul>
                     </div>            
@@ -61,7 +61,7 @@
                             <div class="card">
                                <div class="body">
             <div class="header">
-                <h2>Local government information & passport</h2>
+                <h2> passport ya mkopo</h2>
                 <div class="pull-right">
                     <div class="row profile_state">
                     <?php if ($local_gov->cont_attachment == TRUE) {
@@ -97,7 +97,7 @@
        <div class="text-center">
            <?php if ($local_gov->cont_attachment == TRUE) {
             ?>
-        <a href="<?php echo base_url("admin/loan_pending"); ?>" class="btn btn-sm btn-primary">Finish</a>
+        <a href="<?php echo base_url("admin/loan_pending"); ?>" class="btn btn-sm btn-primary">Maliza</a>
         <?php }else{ ?>
            
            <?php } ?>

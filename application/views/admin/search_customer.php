@@ -10,8 +10,8 @@
                         <ul class="breadcrumb">
                             <li class="breadcrumb-item"><a href="<?php echo base_url("admin/index"); ?>"><i class="icon-home"></i></a></li>
                             
-                            <li class="breadcrumb-item active">Loan</li>
-                            <li class="breadcrumb-item active">Guarantor's information</li>
+                            <li class="breadcrumb-item active">Mkopo</li>
+                            <li class="breadcrumb-item active">Taarifa za Mdhamini</li>
                         </ul>
                     </div>            
                  
@@ -55,14 +55,7 @@
                                     <small><?php echo $customer->f_name; ?> <?php echo $customer->m_name; ?> <?php echo $customer->l_name; ?></small>
                                 </div>
                             </div>
-                            <div class="col-lg-6 col-6">
-                                <div class="body">
-                                    <!-- <i class="fa fa-star"></i> -->
-                                   <div class="profile-image"> <img src="<?php echo base_url().'assets/img/sig.jpg'; ?>" class="rounded-circle" alt="Gualantors image" style="width: 130px;height: 130px;">
-                                      </div>
-                                    <small>Customer Signature</small>
-                                </div>
-                            </div>
+                            
                            
                             
                         </div>
@@ -77,13 +70,13 @@
                                 <table class="table table-hover j-basic-example dataTable table-custom">
                                     <thead class="thead-primary">
                                         <tr>
-                                            <th>Full Name</th>
-                                            <th>Phone Number</th>
-                                            <th>Employee</th>
-                                            <th>Branch</th>
-                                            <th>District</th>
-                                            <th>Ward</th>
-                                            <th>Street</th>
+                                            <th>Jina</th>
+                                            <th>Namba Ya Simu</th>
+                                            <th>mfanyakazi</th>
+                                            <th>Tawi</th>
+                                            <th>Wilaya</th>
+                                            <th>Kata</th>
+                                            <th>Mtaa</th>
                                         </tr>
                                     </thead>
                                    
@@ -114,15 +107,15 @@
                     <div class="card">
                           <div class="body">
                             <div class="header">
-                              <h2>Guarantors List</h2>
+                              <h2>Wadhamini</h2>
                             </div>
                             <div class="table-responsive">
                                 <table class="table table-hover j-basic-example dataTable table-custom">
                                     <thead class="thead-primary">
                                         <tr>
-                                            <th>Full Name</th>
-                                            <th>Phone Number</th>
-                                            <th>Relationship</th>
+                                            <th>Jina</th>
+                                            <th>Namba ya simu</th>
+                                            <th>Mahusiano</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -151,24 +144,24 @@
             <div class="modal-body">
                 <div class="row clearfix">
                              <div class="col-lg-4 col-6">
-                          <span>First Name:</span>
+                          <span>Jina la kwanza:</span>
                             <input type="text" class="form-control" id="sp_name" value="<?php echo $sponsers_datas->sp_name ?>" placeholder="First name" name="sp_name" autocomplete="off">
                         </div>
                                <div class="col-lg-4 col-6">
-                              <span>Middle name:</span>
+                              <span>Jina la Kati:</span>
                                 <input type="text" class="form-control" id="sp_mname" value="<?php echo $sponsers_datas->sp_mname ?>" placeholder="Enter Middle name" name="sp_mname" autocomplete="off">
                             </div>
                                  <div class="col-lg-4 col-6">
-                      <span>Last name:</span>
+                      <span>Jina la mwisho:</span>
                         <input type="text" class="form-control" value="<?php echo $sponsers_datas->sp_lname ?>" id="sp_lname" placeholder="Enter Last name" name="sp_lname" autocomplete="off">
                     </div>
                     <div class="col-lg-6 col-6">
-                      <span>Phone number:</span>  
+                      <span>Nambari ya simu:</span>  
                         <input type="number" class="form-control" value="<?php echo $sponsers_datas->sp_phone_no ?>" id="sp_phone_no" placeholder="Enter Phone number" name="sp_phone_no" autocomplete="off">
                     </div>
                    
                      <div class="col-lg-6 col-12">
-                      <span>Reationship with Customer:</span>  
+                      <span>Mahusiano na Mkopaji:</span>  
                         <input type="text" class="form-control" id="sp_relation" value="<?php echo $sponsers_datas->sp_relation ?>" placeholder="Enter Reationship With Customer" name="sp_relation" autocomplete="off">
                     </div>
                                
@@ -176,8 +169,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="submit" class="btn btn-primary">Update</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">CLOSE</button>
+                <button type="submit" class="btn btn-primary">Rekebisha</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Funga</button>
             </div>
             <?php echo form_close(); ?>
         </div>
@@ -203,19 +196,19 @@
                                 <div class="col-md-12">
                     <div class="card">
                         <div class="header">
-                            <h2>Guarantors Information</h2>
+                            <h2>TAARIFA ZA MDHAMINI</h2>
                         </div>
                         <div class="body">
             <?php echo form_open("admin/create_sponser/{$customer->customer_id}"); ?>
                             <div class="row">
 
     <div class="col-lg-4 col-6">
-      <span>First Name:</span>
+      <span>Jina La Kwanza:</span>
         <input type="text" class="form-control" id="sp_name" placeholder="First name" name="sp_name" autocomplete="off">
     </div>
 
     <div class="col-lg-4 col-6">
-      <span>Middle name:</span>
+      <span>Jina La kati:</span>
         <input type="text" class="form-control" id="sp_mname" placeholder="Enter Middle name" name="sp_mname" autocomplete="off">
     </div>
 
@@ -223,16 +216,16 @@
     <input type="hidden" name="comp_id" id="comp_id" value="<?php echo $customer->comp_id; ?>">
 
     <div class="col-lg-4 col-6">
-      <span>Last name:</span>
+      <span>Jina La Mwisho:</span>
         <input type="text" class="form-control" id="sp_lname" placeholder="Enter Last name" name="sp_lname" autocomplete="off">
     </div>
     <div class="col-lg-6 col-6">
-      <span>Phone number:</span>  
+      <span>Nambari Ya simu:</span>  
         <input type="number" class="form-control" id="sp_phone_no" placeholder="Enter Phone number" name="sp_phone_no" autocomplete="off">
     </div>
    
      <div class="col-lg-6 col-12">
-      <span>Reationship with Customer:</span>  
+      <span>Mahusiano Na mkopaji:</span>  
         <input type="text" class="form-control" id="sp_relation" placeholder="Enter Reationship With Customer" name="sp_relation" autocomplete="off">
     </div>
       </div>
@@ -240,12 +233,12 @@
     <br>
 
     <div class="text-center">
-    <button type="submit" class="btn btn-primary"><i class="icon-pencil">Save</i></button>
+    <button type="submit" class="btn btn-primary"><i class="icon-pencil">Hifadhi</i></button>
     <?php if (@$data_loan_desc->loan_status == 'open' || @$data_loan_desc->loan_status == 'reject' || @$data_loan_desc->loan_status == 'out' || @$data_loan_desc->loan_status == 'withdrawal') {
      ?>
-<a href="<?php echo base_url("admin/loan_applicationForm/{$customer->customer_id}"); ?>" class="btn btn-primary">Next</a>
+<a href="<?php echo base_url("admin/loan_applicationForm/{$customer->customer_id}"); ?>" class="btn btn-primary">Mbele</a>
  <?php }else{ ?>
-    <a href="<?php echo base_url("admin/loan_applicationForm/{$customer->customer_id}"); ?>" class="btn btn-primary">Next</a>
+    <a href="<?php echo base_url("admin/loan_applicationForm/{$customer->customer_id}"); ?>" class="btn btn-primary">Mbele</a>
     <?php } ?>
     </div>
                             

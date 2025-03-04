@@ -10,8 +10,8 @@
                         <ul class="breadcrumb">
                             <li class="breadcrumb-item"><a href="<?php echo base_url("admin/index"); ?>"><i class="icon-home"></i></a></li>
                             
-                            <li class="breadcrumb-item active">Loan</li>
-                            <li class="breadcrumb-item active">Loan Application Form</li>
+                            <li class="breadcrumb-item active">Mkopo</li>
+                            <li class="breadcrumb-item active">Maombi ya Mkopo</li>
                         </ul>
                     </div>            
                  
@@ -42,16 +42,16 @@
                     <div class="col-md-12">
                     <div class="card">
                         <div class="header">
-                            <h2>Loan Application Form</h2>
+                            <h2>Fomu ya Maombi</h2>
                         </div>
                         <div class="body">
             <?php echo form_open("admin/create_loanapplication/{$customer->customer_id}"); ?>
             <div class="row">
 
                                     <div class="col-lg-3 form-group-sub">
-                                        <span>Loan category:</span>
+                                        <span>Aina ya Mkopo:</span>
                                       <select type="number" name="category_id" class="form-control select2" required>
-                                        <option value="">Select Loan Category</option>
+                                        <option value="">Chagua Aina ya mkopo</option>
                                         <?php foreach ($loan_category as $loan_categorys): ?>
                                         <option value="<?php echo $loan_categorys->category_id; ?>"><?php echo $loan_categorys->loan_name; ?> / <?php echo $loan_categorys->loan_price; ?> - <?php echo $loan_categorys->loan_perday; ?></option>
                                         <?php endforeach; ?>
@@ -69,7 +69,7 @@
                                         </select>
                                     </div> -->
                                     <div class="col-lg-3 form-group-sub">
-                                        <span>Employee:</span>
+                                        <span>Mfanyakazi:</span>
                                         <select type="number" name="empl_id" class="form-control select2">
                                             <option value="<?php echo $customer->empl_id; ?>"><?php echo $customer->empl_name; ?></option>
                                             <?php foreach ($mpl_data_blanch as $mpl_data_blanchs): ?>
@@ -83,23 +83,15 @@
                                     <input type="hidden" name="blanch_id" value="<?php echo $customer->blanch_id; ?>">
 
                                     <div class="col-lg-3 form-group-sub">
-                                        <span>Loan Amount Applied:</span>
+                                        <span>Kiasi cha mkopo:</span>
                                         <input type="number" name="how_loan" placeholder="Loan Amount Applied" autocomplete="off" class="form-control input-sm" required>
                                     </div>
 
                                     <div class="col-lg-3 form-group-sub">
-                                        <span>Loan Duration:</span>
+                                        <span>Muda wa Mkopo:</span>
                                     <select type="number" name="day" class="form-control" required class="form-control input-sm">
-                                    <option value="">Select Duration</option>
-                                    <option value="1">Daily</option>
-                                    <option value="7">Weekely</option>
-                                    <?php 
-                                    $month = date("m");
-                                     $year = date("Y");
-                                     $d = cal_days_in_month(CAL_GREGORIAN,$month,$year);
-                                     ?>
-                                    <option value="<?php echo $d; ?>">Monthly</option>
-                                    
+                                    <option value="">chagua muda</option>
+                                    <option value="1">Siku</option>
                                 </select>
                                     </div>
 
@@ -165,16 +157,16 @@
                       <div class="col-md-12">
                     <div class="card">
                         <div class="header">
-                            <h2>Loan Application Form</h2>
+                            <h2>Fomu ya mkopo</h2>
                         </div>
                         <div class="body">
             <?php echo form_open("admin/create_loanapplication/{$customer->customer_id}"); ?>
             <div class="row">
 
                                     <div class="col-lg-3 form-group-sub">
-                                        <span>Loan category:</span>
+                                        <span>Aina ya Mkopo:</span>
                                       <select type="number" name="category_id" class="form-control select2" required>
-                                        <option value="">Select Loan Category</option>
+                                        <option value="">chagua aina ya mkopo</option>
                                         <?php foreach ($loan_category as $loan_categorys): ?>
                                         <option value="<?php echo $loan_categorys->category_id; ?>"><?php echo $loan_categorys->loan_name; ?> / <?php echo $loan_categorys->loan_price; ?> - <?php echo $loan_categorys->loan_perday; ?></option>
                                         <?php endforeach; ?>
@@ -192,7 +184,7 @@
                                         </select>
                                     </div> -->
                                     <div class="col-lg-3 form-group-sub">
-                                        <span>Employee:</span>
+                                        <span>Mfanyakazi:</span>
                                         <select type="number" name="empl_id" class="form-control select2">
                                             <option value="<?php echo $customer->empl_id; ?>"><?php echo $customer->empl_name; ?></option>
                                             <?php foreach ($mpl_data_blanch as $mpl_data_blanchs): ?>
@@ -206,29 +198,21 @@
                                     <input type="hidden" name="blanch_id" value="<?php echo $customer->blanch_id; ?>">
 
                                     <div class="col-lg-3 form-group-sub">
-                                        <span>Loan Amount Applied:</span>
+                                        <span>Kiasi cha Mkopo:</span>
                                         <input type="number" name="how_loan" placeholder="Loan Amount Applied" autocomplete="off" class="form-control input-sm" required>
                                     </div>
 
                                     <div class="col-lg-3 form-group-sub">
-                                        <span>Loan Duration:</span>
-                                    <select type="number" name="day" class="form-control" required class="form-control input-sm">
-                                    <option value="">Select Duration</option>
-                                    <option value="1">Daily</option>
-                                    <option value="7">Weekely</option>
-                                    <?php 
-                                    $month = date("m");
-                                     $year = date("Y");
-                                     $d = cal_days_in_month(CAL_GREGORIAN,$month,$year);
-                                     ?>
-                                    <option value="<?php echo $d; ?>">Monthly</option>
-                                    
-                                </select>
+                                        <span>Marejesho Ya:</span>
+                                        <select type="number" name="day" class="form-control" required class="form-control input-sm">
+                                      <option value="1" selected>Siku</option>
+                                     </select>
+
                                     </div>
 
                                     <div class="col-lg-3 form-group-sub">
-                                        <span>Number of Repayments:</span>
-                                <input type="number" name="session" placeholder="Enter Number of Repayments" autocomplete="off" class="form-control input-sm" required>
+                                        <span>idadi ya Marejesho:</span>
+                                <input type="number" name="session" placeholder="andika idadi ya marejesho" autocomplete="off" class="form-control input-sm" required>
                                     </div>
                                  
                                  <div class="col-lg-3 form-group-sub">
@@ -252,12 +236,12 @@
                                     </div>
                                     
                                     <div class="col-lg-3 form-group-sub">
-                                        <span><b>Does Loan is Deducted From Loan Fee?:</b></span>
+                                        <span><b>Tambua kuwa Gharama ya fomu itakatwa kwenye mkopo?:</b></span>
                                         <select type="number" name="fee_status" class="form-control" required>
-                                            <option value="">Select</option>
+                                          
                                             <?php if ($loan_fee_category->fee_category == 'GENERAL') {
                                              ?>
-                                            <option value="YES">YES</option>
+                                            <option value="YES" selected>Sawa</option>
                                             <!-- <option value="NO">NO</option> -->
                                         <?php }elseif ($loan_fee_category->fee_category == 'LOAN PRODUCT') {
                                          ?>
@@ -268,15 +252,15 @@
                                     </div>
 
                                     <div class="col-lg-3 form-group-sub">
-                                        <span>Reason of Applying Loan:</span>
-                                   <input type="text" name="reason" autocomplete="off"  class="form-control input-sm" placeholder="Reason of Applying Loan:" required>
+                                        <span>Taja Biashara ya Mteja:</span>
+                                   <input type="text" name="reason" autocomplete="off"  class="form-control input-sm" placeholder="mfano duka la mahitaji:" required>
                                     </div> 
                               </div>
                            </div>
                                <br>
 
                         <div class="text-center">
-                        <button type="submit" class="btn btn-primary"><i class="icon-drawer">Next</i></button>
+                        <button type="submit" class="btn btn-primary"><i class="icon-drawer">hifadhi</i></button>
                         </div>
                             
                             <?php echo form_close();  ?>
