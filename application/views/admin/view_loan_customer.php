@@ -346,8 +346,8 @@
 
 <div class="col-lg-4 form-group-sub">
     <label class="form-control-label"><b style="color:red;">Charge Loan Penalty?</b></label>
-    <select type="text" name="penat_status" class="form-control input-sm" required style="color: red; border-color: red;" disabled>
-        <option value="YES" selected>YES</option>
+    <select type="text" name="penat_status" class="form-control input-sm" required style="color: red; border-color: red;">
+        <option value="YES">YES</option>
         <option value="NO">NO</option>
     </select>
 </div>
@@ -389,7 +389,7 @@
     <br>
 
     <div class="text-center">
-    <button type="submit" class="btn btn-primary"><i class="icon-drawer">Aprove</i></button>
+    <button type="submit" class="btn btn-primary"><i class="icon-drawer">Approve</i></button>
 
  
     <a href="<?php echo base_url("admin/reject_loan/{$loan_form->loan_id}"); ?>" class="btn btn-danger">Reject</a>
