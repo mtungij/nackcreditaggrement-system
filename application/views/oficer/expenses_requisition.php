@@ -44,12 +44,19 @@
     <div class="col-lg-4 col-6">
     <div class="form-group">
       <span><?php echo $this->lang->line("incometype_menu"); ?>:</span>
-        <select type="text" name="deduct_type"  class="form-control" required>
-         <option type=""><?php echo $this->lang->line("incometype_menu"); ?></option>
-          <option value="deducted"><?php echo $this->lang->line("income_deducted_menu"); ?></option>
-          <option value="non deducted"><?php echo $this->lang->line("income_non_menu"); ?></option>
+      <select type="number" class="form-control" name="trans_id" required>
+      <option value="">--Select Branch Account--</option>
+      <?php foreach ($blanch_account as $blanch_accounts): ?>
+            <option value="<?php echo $blanch_accounts->trans_id; ?>"><?php echo $blanch_accounts->account_name; ?></option>
+            <?php endforeach; ?>
         </select>
     </div>
+
+    
+
+
+
+    
     </div>
          <div class="col-lg-4 col-6">
     <div class="form-group">

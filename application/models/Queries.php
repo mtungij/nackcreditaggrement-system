@@ -7785,6 +7785,27 @@ public function get_total_remain_amount($sugus) {
     return $total_remain_amount;
 }
 
+public function get_today_registration_fee_total($comp_id) {
+    $this->db->select_sum('registration_fee', 'total_fee');
+    $this->db->where('reg_date', date('Y-m-d'));
+    $this->db->where('comp_id', $comp_id);
+    $query = $this->db->get('tbl_customer');
+
+    return $query->row(); // Ensure it always returns an object
+}
+
+public function get_blanch_account_data($blanch_id){
+	$data = $this->db->query("SELECT * FROM tbl_blanch_account ba JOIN tbl_account_transaction at ON at.trans_id = ba.receive_trans_id WHERE ba.blanch_id = '$blanch_id'");
+	return $data->result();
+}
+
+public function get_today_registered_customers_count($comp_id) {
+    $this->db->where('reg_date', date('Y-m-d'));
+    $this->db->where('comp_id', $comp_id);
+    return $this->db->count_all_results('tbl_customer'); // Returns count directly
+}
+
+
 
 
 

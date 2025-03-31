@@ -24,8 +24,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 
-// $config['base_url'] = 'http://localhost:8079/'; 
-$config['base_url'] = 'http://luhangacredit.loan-pocket.com/'; 
+// $config['base_url'] = 'http://localhost:8094/'; 
+$config['base_url'] = 'https://jipsonmicrocredit.phamasoft.com/'; 
 /*
 |--------------------------------------------------------------------------
 | Index File

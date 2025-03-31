@@ -212,6 +212,7 @@
              $all_male = $this->db->query("SELECT * FROM tbl_customer WHERE comp_id = '$comp_id' AND gender = 'male'");
              $all_female = $this->db->query("SELECT * FROM tbl_customer WHERE comp_id = '$comp_id' AND gender = 'female'");
              $employee = $this->db->query("SELECT * FROM tbl_employee WHERE comp_id = '$comp_id'");
+             $new_customer = $this->queries->get_today_registered_customers_count($comp_id);
              ?>
             </div>
 
@@ -228,6 +229,10 @@
                                     <tr>
                                         <td class="c">JUMLA YA WATEJA</td>
                                         <td class="align-right"><span class="badge badge-success"><?php echo $all_customer->num_rows(); ?></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="c">WATEJA WAPYA</td>
+                                        <td class="align-right"><span class="badge badge-info"><?php echo $new_customer; ?></span></td>
                                     </tr>
 
                                     <tr>
@@ -329,8 +334,9 @@
              $deducted_balance = $this->queries->get_today_deducted_income_dahboard_comp($comp_id);
              $non_balance = $this->queries->get_today_nonDeducted_receive_comp($comp_id);
              $expenses = $this->queries->get_today_expenses_blanch_data_comp($comp_id);
-             // print_r($expenses);
-             //         exit();
+             $reg_fee = $this->queries->get_today_registration_fee_total($comp_id);
+            //  print_r($reg_fee);
+            //          exit();
               ?>
                      <div class="col-md-3 col-12">
                    <div class="card">
@@ -346,12 +352,19 @@
                                     </tr>
 
                                     <tr>
+                                        <td class="c">FOMU/WATEJA WAPYA</td>
+                                        <td class="align-right"><span class="badge badge-warning"><?php echo number_format($reg_fee->total_fee ); ?>
+
+                                        </span></td>
+                                    </tr>
+
+                                    <tr>
                                         <td class="c">FAINI</td>
                                         <td class="align-right"><span class="badge badge-info"><?php echo number_format($non_balance->total_non); ?></span></td>
                                     </tr>
                                     <tr>
                                         <td class="c"><b>JUMLA</b></td>
-                                        <td class="align-right"><span class="badge badge-success"><?php echo number_format($deducted_balance->total_deducted + $non_balance->total_non); ?></span></td>
+                                        <td class="align-right"><span class="badge badge-success"><?php echo number_format($deducted_balance->total_deducted + $non_balance->total_non + $reg_fee->total_fee); ?></span></td>
                                     </tr>
                                     <tr>
                                         <td class="c">MATUMIZI</td>

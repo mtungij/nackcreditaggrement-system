@@ -3630,13 +3630,18 @@ $this->db->query("INSERT INTO tbl_outstand (`comp_id`,`loan_id`,`blanch_id`,`loa
           // print_r($total_depost);
           //           exit();
 
-
+         
          $total_depost = $this->queries->get_sum_dapost($loan_id);
          $loan_dep = $total_depost->remain_balance_loan;
          $kumaliza_depost = $loan_dep + $kumaliza;
 
-	     $loan_int = $loan_restoration->loan_int;
-	     $remain_loan = $loan_int - $total_depost->remain_balance_loan;
+         $loan_int = $loan_restoration->loan_int;
+         $remain_loan = $loan_int - $total_depost->remain_balance_loan;
+
+         $baki = $loan_int - ($loan_dep + $kumaliza);
+
+        //  print_r($baki);
+        //      exit();
 
 	     $sun_blanch_capital = $this->queries->get_remain_blanch_capital($blanch_id,$trans_id);
 	     $total_blanch_amount = $sun_blanch_capital->blanch_capital;
@@ -3733,7 +3738,7 @@ $this->db->query("INSERT INTO tbl_outstand (`comp_id`,`loan_id`,`blanch_id`,`loa
           }
 	     $this->insert_remainloan($loan_id,$depost_amount,$paid_out,$pay_id);
 	     $this->update_loastatus($loan_id);
-	     $this->depost_balance($loan_id,$comp_id,$blanch_id,$customer_id,$new_depost,$sum_balance,$description,$role,$group_id,$p_method,$deposit_date,$dep_id);
+       $this->depost_balance($loan_id,$comp_id,$blanch_id,$customer_id,$new_depost,$sum_balance,$description,$role,$group_id,$p_method,$deposit_date,$dep_id,$baki);
 	     //$this->depost_Blanch_accountBalance($comp_id,$blanch_id,$payment_method,$depost_money);
 	     //$this->insert_blanch_amount_deposit($blanch_id,$deposit_new,$trans_id);
 	        if(@$principal_blanch == TRUE){
@@ -3875,7 +3880,7 @@ $days_remain = $this->queries->get_loan_active_customer($customer_id);
           }
 	     $this->insert_remainloan($loan_id,$depost_amount,$paid_out,$pay_id);
 	     
-	     $this->depost_balance($loan_id,$comp_id,$blanch_id,$customer_id,$new_depost,$sum_balance,$description,$role,$group_id,$p_method,$deposit_date,$dep_id);
+	     $this->depost_balance($loan_id,$comp_id,$blanch_id,$customer_id,$new_depost,$sum_balance,$description,$role,$group_id,$p_method,$deposit_date,$dep_id,$baki);
 
 	     //$this->depost_Blanch_accountBalance($comp_id,$blanch_id,$payment_method,$depost_money);
 	     //$this->insert_blanch_amount_deposit($blanch_id,$deposit_new,$trans_id);
@@ -4013,7 +4018,8 @@ $days_remain = $this->queries->get_loan_active_customer($customer_id);
           $empl_id = $empl_id;
 	     $this->insert_loan_lecordDataDeposit($comp_id,$customer_id,$loan_id,$blanch_id,$new_depost,$dep_id,$group_id,$trans_id,$restoration,$loan_aproved,$deposit_date,$empl_id);
           }
-	     $this->depost_balance($loan_id,$comp_id,$blanch_id,$customer_id,$new_depost,$sum_balance,$description,$role,$group_id,$p_method,$deposit_date,$dep_id);
+	    
+       $this->depost_balance($loan_id,$comp_id,$blanch_id,$customer_id,$new_depost,$sum_balance,$description,$role,$group_id,$p_method,$deposit_date,$dep_id,$baki);
 
 	     //$this->depost_Blanch_accountBalance($comp_id,$blanch_id,$payment_method,$depost_money);
 	     //principal
@@ -4546,12 +4552,12 @@ $sqldata="UPDATE `tbl_depost` SET `depost`= '$remain_oldDepost',`sche_principal`
     	return $this->db->insert_id();
     }
 
-   public function depost_balance($loan_id,$comp_id,$blanch_id,$customer_id,$new_depost,$sum_balance,$description,$role,$group_id,$p_method,$deposit_date,$dep_id){
-   	$day = date("Y-m-d");
-  $this->db->query("INSERT INTO tbl_pay (`loan_id`,`blanch_id`,`comp_id`,`customer_id`,`depost`,`balance`,`description`,`pay_status`,`stat`,`date_pay`,`emply`,`group_id`,`date_data`,`p_method`,`dep_id`) VALUES ('$loan_id','$blanch_id','$comp_id','$customer_id','$new_depost','$sum_balance','CASH DEPOSIT','1','1','$day','$role','$group_id','$deposit_date','$p_method','$dep_id')");
-    
-
-      }
+    public function depost_balance($loan_id,$comp_id,$blanch_id,$customer_id,$new_depost,$sum_balance,$description,$role,$group_id,$p_method,$deposit_date,$dep_id,$baki){
+      $day = date("Y-m-d");
+   $this->db->query("INSERT INTO tbl_pay (`loan_id`,`blanch_id`,`comp_id`,`customer_id`,`depost`,`balance`,`description`,`pay_status`,`stat`,`date_pay`,`emply`,`group_id`,`date_data`,`p_method`,`dep_id`,`rem_debt`) VALUES ('$loan_id','$blanch_id','$comp_id','$customer_id','$new_depost','$sum_balance','CASH DEPOSIT','1','1','$day','$role','$group_id','$deposit_date','$p_method','$dep_id','$baki')");
+     
+ 
+       }
 
       //begin withdrawal function
       public function get_autodata(){
@@ -5683,7 +5689,7 @@ echo $this->queries->fetch_loan_list($this->input->post('customer_id'));
     $customer = $this->queries->search_CustomerLoan($customer_id);
 
       //   echo "<pre>";
-      // print_r($loan_id);
+      // print_r( $customery);
       //       exit();
     $this->load->view('admin/search_account',['customer'=>$customer,'customery'=>$customery,'customer_id'=>$customer_id,'loan_id'=>$loan_id]);
     }
@@ -6443,60 +6449,49 @@ public function delete_request_data($req_id){
 
 
 public function create_requstion_form(){
-    $this->load->model('queries');
-    $this->form_validation->set_rules('comp_id','company','required');
-    $this->form_validation->set_rules('blanch_id','blanch','required');
-    $this->form_validation->set_rules('req_description','description','required');
-    $this->form_validation->set_rules('req_amount','Amount','required');
-    //$this->form_validation->set_rules('empl_id','Employee','required');
-    $this->form_validation->set_rules('req_date','req_date','required');
-    $this->form_validation->set_rules('deduct_type','type','required');
-    $this->form_validation->set_error_delimiters('<div class="text-danger">','</div>');
+	$this->load->model('queries');
+	$this->form_validation->set_rules('blanch_id','Blanch','required');
+	$this->form_validation->set_rules('ex_id','Expenses','required');
+	$this->form_validation->set_rules('req_amount','Request Amount','required');
+	$this->form_validation->set_rules('trans_id','Account','required');
+	$this->form_validation->set_rules('req_description','description','required');
+	$this->form_validation->set_rules('comp_id','Company','required');
+	$this->form_validation->set_error_delimiters('<div class="text-danger">','</div>');
 
-    if ($this->form_validation->run()) {
-        $data = $this->input->post();
-        //    echo "<pre>";
-        // print_r($data);
-        //     exit();
-        $comp_id = $data['comp_id'];
-        $blanch_id = $data['blanch_id'];
-        $deduct_type = $data['deduct_type'];
-        $req_amount = $data['req_amount'];
-        
-        $deducted_income = $this->queries->get_deducted_income_blanch($blanch_id);
-        $deducted = $deducted_income->total_deducted;
-    
-        $expenses_deducted = $deducted - $req_amount;
+	if ($this->form_validation->run()) {
+		$data = $this->input->post();
 
-        $non_deductedIncome = $this->queries->get_non_deducted_income_blanch($blanch_id);
-        $non_income = $non_deductedIncome->total_nonbalance;
+		$blanch_id = $data['blanch_id'];
+		$ex_id = $data['ex_id'];
+		$req_amount = $data['req_amount'];
+		$trans_id = $data['trans_id'];
+		$req_description = $data['req_description'];
+		$comp_id = $data['comp_id'];
 
-        $expenses_non = $non_income - $req_amount;
+		$blanch_account = $this->queries->get_blanch_balance_expenses($blanch_id,$trans_id);
+		$balance_blanch = $blanch_account->blanch_capital;
+		$remain_blanch_remain = $balance_blanch - $req_amount; 
+		if ($req_amount > $balance_blanch) {
+       $this->session->set_flashdata("error",'Blanch Account Blance is Not Enough');
+       return redirect("admin/expnses_requisition_form");
+		}else{
+		$this->insert_expenses_request($comp_id,$blanch_id,$ex_id,$req_description,$req_amount,$trans_id);
+		$this->update_blanch_account_balance($comp_id,$blanch_id,$trans_id,$remain_blanch_remain);
+       $this->session->set_flashdata("massage",'Successfully');
+       
+			}
+		return redirect("admin/expnses_requisition_form");
+	}
+	$this->expnses_requisition_form();
+  }
 
-        if ($deduct_type == 'deducted') {
-           if ($deducted < $req_amount) {
-            $this->session->set_flashdata("error",'You don`t Have Enough Balance');
-            return redirect('admin/expnses_requisition_form');
-           }else{
-            $this->update_expenses_income_deducted($blanch_id,$expenses_deducted);
-            $this->queries->insert_reques_expenses($data);
-            $this->session->set_flashdata("massage",'Expenses Request Successfully');
-           }
 
-        }elseif ($deduct_type == 'non deducted') {
-            if ($non_income < $req_amount) {
-             $this->session->set_flashdata("error",'You don`t Have Enough Balance');
-            return redirect('admin/expnses_requisition_form'); 
-            }else{
-                $this->update_income_nonbalance($blanch_id,$expenses_non);
-                $this->queries->insert_reques_expenses($data);
-                $this->session->set_flashdata("massage",'Expenses Request Successfully');
-            }
-        }
-        return redirect("admin/expnses_requisition_form");
-    }
-    $this->expnses_requisition_form();
-}
+  public function insert_expenses_request($comp_id,$blanch_id,$ex_id,$req_description,$req_amount,$trans_id){
+   $date = date("Y-m-d");
+  $this->db->query("INSERT INTO tbl_request_exp (`comp_id`,`blanch_id`,`ex_id`,`req_description`,`req_amount`,`req_date`,`trans_id`) VALUES ('$comp_id','$blanch_id','$ex_id','$req_description','$req_amount','$date','$trans_id')");	
+  }
+
+
 
 public function update_expenses_income_deducted($blanch_id,$expenses_deducted){
     $sqldata="UPDATE `tbl_receive_deducted` SET `deducted`= '$expenses_deducted' WHERE `blanch_id`= '$blanch_id'";
@@ -6522,10 +6517,7 @@ echo $this->queries->fetch_acount($this->input->post('blanch_id'));
 }
 
 
-  public function insert_expenses_request($comp_id,$blanch_id,$ex_id,$req_description,$req_amount,$trans_id){
-   $date = date("Y-m-d");
-  $this->db->query("INSERT INTO tbl_request_exp (`comp_id`,`blanch_id`,`ex_id`,`req_description`,`req_amount`,`req_date`,`trans_id`) VALUES ('$comp_id','$blanch_id','$ex_id','$req_description','$req_amount','$date','$trans_id')");	
-  }
+  
 
   public function update_blanch_account_balance($comp_id,$blanch_id,$trans_id,$remain_blanch_remain){
   $sqldata="UPDATE `tbl_blanch_account` SET `blanch_capital`= '$remain_blanch_remain' WHERE `blanch_id`= '$blanch_id' AND `receive_trans_id` = '$trans_id'";

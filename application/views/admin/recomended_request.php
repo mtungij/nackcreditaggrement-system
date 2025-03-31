@@ -27,9 +27,9 @@
                 <div class="col-lg-12">
                     <div class="card">
                          <div class="header">
-                            <h2>Today Expenses</h2>
+                            <h2>Matumizi Ya Leo</h2>
                             <div class="pull-right">                            
-                                <a href="" class="btn btn-primary btn-sm"data-toggle="modal" data-target="#addcontact1<?php //echo $loan_categorys->category_id; ?>"><i class="icon-calendar">Previous</i></a>
+                                <a href="" class="btn btn-primary btn-sm"data-toggle="modal" data-target="#addcontact1<?php //echo $loan_categorys->category_id; ?>"><i class="icon-calendar">Matumizi ya nyuma</i></a>
                             </div>
     
                              </div>
@@ -38,15 +38,15 @@
                                 <table class="table table-hover js-basic-example dataTable table-custom">
                                     <thead class="thead-primary">
                                         <tr>
-                                               <th>Branch</th>
-                                                <th>Expenses</th>
-                                                <th>Amount</th>
-                                                <th>From Deduction Type</th>
-                                                <th>Descrption </th>
+                                               <th>Tawi</th>
+                                                <th>Tumizi</th>
+                                                <th>Kiasi</th>
+                                                <th>A/C ya malipo</th>
+                                                <th>Maelezo </th>
                                                 <!-- <th>Comment</th> -->
-                                                <th>Date</th>
+                                                <th>Tarehe</th>
                                                 <!-- <th>status</th> -->
-                                                <th>Action</th>
+                                                <th>Hatua</th>
                                         </tr>
                                     </thead>
                                    
@@ -57,7 +57,7 @@
                                     <td><?php echo $datas->blanch_name; ?></td>
                                     <td><?php echo $datas->ex_name; ?></td>
                                     <td><?php echo number_format($datas->req_amount); ?></td>
-                                    <td><?php echo $datas->deduct_type; ?></td>
+                                    <td><?php echo $datas->account_name; ?></td>
                                     <td><?php echo $datas->req_description; ?></td>
                                     <!--  <td><?php //echo $datas->req_comment; ?></td> -->
                                      <td><?php echo $datas->req_date; ?></td>
@@ -99,15 +99,15 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h6 class="title" id="defaultModalLabel">Filter Previous Expenses</h6>
+                <h6 class="title" id="defaultModalLabel"> Matumizi ya Nyuma</h6>
             </div>
             <?php echo form_open("admin/previous_expences/"); ?>
             <div class="modal-body">
                 <div class="row clearfix">
                     <div class="col-md-12">
-                        <span>Select Branch</span>
+                        <span>Chagua Tawi</span>
                        <select type="number" class="form-control" name="blanch_id" required>
-                           <option value="">---Select Branch---</option>
+                           <option value="">---chagua tawi---</option>
                            <?php foreach ($blanch as $blanchs): ?>
                            <option value="<?php echo $blanchs->blanch_id; ?>"><?php echo $blanchs->blanch_name; ?></option>
                            <?php endforeach; ?>
@@ -116,18 +116,18 @@
                     </div>
                     <?php $date = date("Y-m-d"); ?>
                      <div class="col-md-6">
-                        <span>From</span>
+                        <span>kwanzia tarehe</span>
                         <input type="date" class="form-control" autocomplete="off" name="from" value="<?php echo $date; ?>" required>
                     </div>
                      <div class="col-md-6">
-                        <span>To</span>
+                        <span>mpaka tarehe</span>
                         <input type="date" class="form-control" autocomplete="off" name="to" value="<?php echo $date; ?>" required>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="submit" class="btn btn-primary">Filter</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">CLOSE</button>
+                <button type="submit" class="btn btn-primary">Tafuta</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">funga</button>
             </div>
             <?php echo form_close(); ?>
         </div>

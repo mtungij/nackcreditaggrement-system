@@ -94,6 +94,7 @@
                                 <div class="col-lg-4 col-6">
                                     <span><?php echo $this->lang->line("year_customer_menu"); ?>:</span>
                             <input type="" id="age" name="age" readonly class="form-control input-sm" value="" required>
+                            <input type="hidden" name="registration_fee" value="10000">
                             <?php $date = date("Y-m-d"); ?>
                             <input type="hidden" name="reg_date" value="<?php echo $date; ?>">
                                 </div>

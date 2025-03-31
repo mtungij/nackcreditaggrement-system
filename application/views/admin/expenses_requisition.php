@@ -70,13 +70,11 @@
         <input type="number" class="form-control" placeholder="Amount" name="req_amount" autocomplete="off" required>
     </div>
     </div>
-        <div class="col-lg-3">
+    <div class="col-lg-3">
     <div class="form-group">
-      <label>Income Type:</label>
-        <select type="text" name="deduct_type"  class="form-control" required>
-         <option type="">Select Income Type</option>
-          <option value="deducted">Deducted Income</option>
-          <option value="non deducted">Non-Deducted Income</option>
+      <label class="control-label">Select Account:</label>
+        <select type="number" name="trans_id" id="account"  class="form-control" required>
+         <option type="">Select Account</option>
         </select>
     </div>
     </div>
@@ -108,6 +106,14 @@
         </div>
     </div>
 </div>
+
+
+
+
+
+
+
+
 
 
 

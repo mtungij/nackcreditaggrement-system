@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title><?php echo $compdata->comp_name; ?> |CUSTOMER ACCOUNT STATEMENT
+  <title><?php echo $compdata->comp_name; ?> |Ripoti ya Akaunti ya Mkopo
  </title>
 </head>
 <body>
@@ -42,27 +42,30 @@
 <b><?php echo $compdata->adress; ?></b> <br>
 <?php //$day = date("d-m-Y"); ?>
 </p>
-<p style="font-size:12px;text-align:center;" class="c">CUSTOMER ACCOUNT STATEMENT</p>
-<p style="font-size:12px;text-align:center;" class="c"><?php echo $customer_data->f_name; ?> <?php echo $customer_data->m_name; ?> <?php echo $customer_data->l_name; ?> / <?php echo $customer_data->phone_no; ?></p>
+<p style="font-size:12px;text-align:center;" class="c">RIPOTI YA AKAUNTI YA MKOPO</p>
+<p style="font-size:12px;text-align:center;" class="c"><b><?php echo $customer_data->f_name; ?> </b> <b><?php echo $customer_data->m_name; ?></b> <b> <?php echo $customer_data->l_name; ?> </b> / <b> <?php echo $customer_data->phone_no; ?></b></p>
 </div>
 </td>
 <td>
-  <p>Loan Aproved : <?php echo number_format($customer_data->loan_aprove); ?></p>
-  <p>Interest : <?php echo $customer_data->interest_formular; ?>%</p>
-  <p>Restoration Type : <?php 
+  <p>Kiasi cha mkopo : <b> <?php echo number_format($customer_data->loan_aprove); ?> </b> </p>
+  <p>Riba : <?php echo $customer_data->interest_formular; ?>%</p>
+  <p>Aina ya Marejesho : <b>
+
+  <?php 
   if ($customer_data->day == '1') {
-    echo "Daily";
+    echo "KILA SIKU";
   }elseif ($customer_data->day == '7') {
-   echo "Weekly";
+   echo "WIKI";
   }elseif ($customer_data->day == '30') {
-     echo "Monthly";
+     echo "MWEZI";
   }
    ?>
+  </b> 
 </p>
-  <p>Number Of Repayment : <?php echo $customer_data->session; ?></p>
-  <p>Loan + Interest : <?php echo number_format($customer_data->loan_int); ?></p>
-  <p>Paid Amount : <?php echo number_format($total_deposit->total_Deposit) ?> </p>
-  <p>Remain Amount : <?php echo number_format(($customer_loan->loan_int) - ($total_deposit->total_Deposit) ) ?></p>
+  <p>Idadi ya Marejesho : <b><?php echo $customer_data->session; ?></b> </p>
+  <p>Mkopo na Riba : <b><?php echo number_format($customer_data->loan_int); ?></b> </p>
+  <p>Jumla ya Malipo : <b><?php echo number_format($total_deposit->total_Deposit) ?></b>  </p>
+  <p>Deni: <b><?php echo number_format(($customer_loan->loan_int) - ($total_deposit->total_Deposit) ) ?></b></p>
 </td>
 </tr>
 </table>
@@ -97,74 +100,50 @@ tr:nth-child(even) {
   <thead>  
     <tr>
    
-     <th style="font-size:12px;border: none;">Date</th>
-     <th style="font-size:12px;border: none;">Description</th>
-     <th style="font-size:12px;border: none;">Deposit</th>
-     <th style="font-size:12px;border: none;">Withdrawal</th>
-     <th style="font-size:12px;border: none;">Balance</th>
+     <th style="font-size:12px;border: none;">Tarehe</th>
+     <th style="font-size:12px;border: none;">Afisa</th>
+     <th style="font-size:12px;border: none;">Mkopo</th>
+     <th style="font-size:12px;border: none;">Mkopo & Riba</th>
+     <th style="font-size:12px;border: none;">Malipo</th>
+     <th style="font-size:12px;border: none;">Deni</th>
 
   </tr>
   </thead>
+  <tbody>
+    <?php 
+    @$loan_desc = $this->queries->get_total_pay_description_acount_statement($loan_id);
+//    echo "<pre>";
+//       print_r( @$loan_desc);
+//             exit();
+    // Remove the last 3 records
+    $filtered_loan_desc = array_slice($loan_desc, 0, count($loan_desc) - 3);
 
-   <?php $no = 1; ?>
-  <?php foreach ($loan_desc as $payisnulls): ?>
- <tr>
-    <td style="font-size:12px;border: none;" class="c"><?php echo $payisnulls->date_data; ?></td>
-    <td style="font-size:12px;border: none;" class="c">
-       <?php echo $payisnulls->emply; ?>
-                                              <?php if ($payisnulls->emply == TRUE) {   
-                                               ?>
-                                               /
-                                           <?php }else{ ?>
-                                            <?php } ?>
-                                               <?php echo $payisnulls->description; ?>
-                                               <?php if($payisnulls->p_method == TRUE){ ?>
-                                                /<?php echo $payisnulls->account_name; ?>
-                                                <?php }else{ ?> 
-                                                     
-                                                    <?php } ?>
-                                               <?php if ($payisnulls->fee_id == TRUE || $payisnulls->fee_id == '0' ) {
-                                              ?>
-                                              / <?php echo $payisnulls->fee_desc; ?> <?php echo $payisnulls->fee_percentage; ?> <?php echo $payisnulls->symbol; ?>
-                                          <?php }else{ ?>
-                                            <?php } ?>
-                                            <?php if($payisnulls->p_method == FALSE){ ?>
-                                            <?php }else{ ?>
-                                               / 
-                                               <?php } ?>
-                                               <?php //echo @$payisnulls->description; ?>  <?php echo @$payisnulls->loan_name ; ?>
-                                         <?php if(@$payisnulls->day == 1){
-                                           echo "Daily";
-                                    }elseif(@$payisnulls->day == 7){
-                                         echo "Weekly";
-                                    }elseif (@$payisnulls->day == 30 || @$payisnulls->day == 31 || @$payisnulls->day == 28 || @$payisnulls->day == 29) {
-                                        echo "Monthly";
-                                     ?> 
-                                    <?php } ?><?php //echo $payisnulls->session; ?>  / AC/No. <?php echo @$payisnulls->loan_code; ?> / <?php echo $customer_data->phone_no; ?>
-    </td>
-    <td style="font-size:12px;border: none;" class="c"> <?php if($payisnulls->depost == TRUE){ ?>
-                                                <?php echo round(@$payisnulls->depost,2); ?>
-                                            <?php }elseif($payisnulls->depost == FALSE){ ?>
-                                            0.00
-                                                <?php } ?></td>
-    <td style="font-size:12px;border: none;" class="c">
-      <?php if (@$payisnulls->withdrow == TRUE) {
-                                                 ?>
-                                                <?php echo round(@$payisnulls->withdrow,2); ?>
-                                                <?php }elseif (@$payisnulls->withdrow == FALSE) {
-                                                 ?>
-                                                 0.00
-                                            <?php } ?></td>
-    <td style="font-size:12px;border: none;" class="c"><?php if (@$payisnulls->balance == TRUE) {
-                                                 ?>
-                                                <?php echo round(@$payisnulls->balance,2); ?>
-                                                <?php }elseif (@$payisnulls->balance == FALSE) {
-                                                 ?>
-                                                 0.00
-                                                 <?php } ?></td>
+    // Initialize remaining debt with the total loan interest
     
-  </tr>
- <?php endforeach; ?>
+    ?>
+
+    <?php foreach ($filtered_loan_desc as $payisnulls): ?>
+        <tr>
+            <td class="c"><?php echo $payisnulls->date_data; ?></td>
+            <td class="c"><?php echo $payisnulls->emply; ?></td>
+            <td><?php echo number_format(@$payisnulls->loan_aprove); ?></td>
+            <td><?php echo number_format(@$payisnulls->loan_int); ?></td>
+            <td>
+                <?php
+                if ($payisnulls->depost != 0) {
+                    echo number_format(@$payisnulls->depost);
+                }
+                ?>
+            </td>
+           
+            <td>
+                <?php
+              echo number_format(@$payisnulls->rem_debt)
+                ?>
+            </td>
+        </tr>
+    <?php endforeach; ?>
+</tbody>
  
 </table>
 
