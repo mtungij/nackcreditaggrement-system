@@ -67,10 +67,11 @@ class Admin extends CI_Controller {
   $total_malazo= $this->queries->get_total_malazo_pendingComp($comp_id);
   $sugus= $this->queries->get_outstand_sixmonth_loan_company($comp_id);
   $total_remain_amount = $this->queries->get_total_remain_amount($sugus);
+  $total_zidi = $this->queries->get_total_zidi_for_month($comp_id);
 
 
   // echo "<pre>";
-  //     print_r($total_remain_amount );
+  //     print_r($total_zidi );
   //             exit();
  
   
@@ -83,7 +84,8 @@ class Admin extends CI_Controller {
   'account_capital'=>$account_capital , 'total_loan_with' =>$total_loan_with,
   'montly_interest' => $montly_interest, 'customer_monthly' =>$customer_monthly,
   'total_monthly_income' =>$total_monthly_income ,
-   'rejesho' => $rejesho , 'total_malazo' => $total_malazo, 'total_remain_amount' => $total_remain_amount]);
+   'rejesho' => $rejesho , 'total_malazo' => $total_malazo, 'total_remain_amount' => $total_remain_amount,
+  'total_zidi'=>$total_zidi]);
 	}
 
   public function mikopo_chefuchefu()
@@ -3522,6 +3524,8 @@ $this->db->query("INSERT INTO tbl_outstand (`comp_id`,`loan_id`,`blanch_id`,`loa
 	      $comp_id = $depost['comp_id'];
 	      $blanch_id = $depost['blanch_id'];
 	      $p_method = $depost['p_method'];
+        $jina_wakala = $depost['jina_wakala'];
+        $zidi = $depost['zidi'];
 	      $loan_id = $depost['loan_id'];
 	      $deposit_date = $depost['deposit_date'];
 	      $depost = filter_var($depost['depost'], FILTER_SANITIZE_NUMBER_INT);
@@ -3534,7 +3538,7 @@ $this->db->query("INSERT INTO tbl_outstand (`comp_id`,`loan_id`,`blanch_id`,`loa
           $new_balance = $depost;
 
           $today = date("Y-m-d");
-
+         
            //  echo "<pre>";
            // print_r($today);
            //   exit();
@@ -3738,7 +3742,7 @@ $this->db->query("INSERT INTO tbl_outstand (`comp_id`,`loan_id`,`blanch_id`,`loa
           }
 	     $this->insert_remainloan($loan_id,$depost_amount,$paid_out,$pay_id);
 	     $this->update_loastatus($loan_id);
-       $this->depost_balance($loan_id,$comp_id,$blanch_id,$customer_id,$new_depost,$sum_balance,$description,$role,$group_id,$p_method,$deposit_date,$dep_id,$baki);
+       $this->depost_balance($loan_id,$comp_id,$blanch_id,$customer_id,$new_depost,$sum_balance,$description,$role,$group_id,$p_method,$deposit_date,$dep_id,$baki,$zidi,$jina_wakala);
 	     //$this->depost_Blanch_accountBalance($comp_id,$blanch_id,$payment_method,$depost_money);
 	     //$this->insert_blanch_amount_deposit($blanch_id,$deposit_new,$trans_id);
 	        if(@$principal_blanch == TRUE){
@@ -3880,7 +3884,7 @@ $days_remain = $this->queries->get_loan_active_customer($customer_id);
           }
 	     $this->insert_remainloan($loan_id,$depost_amount,$paid_out,$pay_id);
 	     
-	     $this->depost_balance($loan_id,$comp_id,$blanch_id,$customer_id,$new_depost,$sum_balance,$description,$role,$group_id,$p_method,$deposit_date,$dep_id,$baki);
+	     $this->depost_balance($loan_id,$comp_id,$blanch_id,$customer_id,$new_depost,$sum_balance,$description,$role,$group_id,$p_method,$deposit_date,$dep_id,$baki,$zidi,$jina_wakala);
 
 	     //$this->depost_Blanch_accountBalance($comp_id,$blanch_id,$payment_method,$depost_money);
 	     //$this->insert_blanch_amount_deposit($blanch_id,$deposit_new,$trans_id);
@@ -4019,7 +4023,7 @@ $days_remain = $this->queries->get_loan_active_customer($customer_id);
 	     $this->insert_loan_lecordDataDeposit($comp_id,$customer_id,$loan_id,$blanch_id,$new_depost,$dep_id,$group_id,$trans_id,$restoration,$loan_aproved,$deposit_date,$empl_id);
           }
 	    
-       $this->depost_balance($loan_id,$comp_id,$blanch_id,$customer_id,$new_depost,$sum_balance,$description,$role,$group_id,$p_method,$deposit_date,$dep_id,$baki);
+       $this->depost_balance($loan_id,$comp_id,$blanch_id,$customer_id,$new_depost,$sum_balance,$description,$role,$group_id,$p_method,$deposit_date,$dep_id,$baki,$zidi,$jina_wakala);
 
 	     //$this->depost_Blanch_accountBalance($comp_id,$blanch_id,$payment_method,$depost_money);
 	     //principal
@@ -4149,6 +4153,7 @@ $massage = 'Ndugu ' . $full_name . ' ' . $middle_name . ' ' . $last_name . ', um
 	   }
 	     
 	   $this->data_with_depost();
+     
 
       }
 
@@ -4552,9 +4557,9 @@ $sqldata="UPDATE `tbl_depost` SET `depost`= '$remain_oldDepost',`sche_principal`
     	return $this->db->insert_id();
     }
 
-    public function depost_balance($loan_id,$comp_id,$blanch_id,$customer_id,$new_depost,$sum_balance,$description,$role,$group_id,$p_method,$deposit_date,$dep_id,$baki){
+    public function depost_balance($loan_id,$comp_id,$blanch_id,$customer_id,$new_depost,$sum_balance,$description,$role,$group_id,$p_method,$deposit_date,$dep_id,$baki,$zidi,$jina_wakala){
       $day = date("Y-m-d");
-   $this->db->query("INSERT INTO tbl_pay (`loan_id`,`blanch_id`,`comp_id`,`customer_id`,`depost`,`balance`,`description`,`pay_status`,`stat`,`date_pay`,`emply`,`group_id`,`date_data`,`p_method`,`dep_id`,`rem_debt`) VALUES ('$loan_id','$blanch_id','$comp_id','$customer_id','$new_depost','$sum_balance','CASH DEPOSIT','1','1','$day','$role','$group_id','$deposit_date','$p_method','$dep_id','$baki')");
+   $this->db->query("INSERT INTO tbl_pay (`loan_id`,`blanch_id`,`comp_id`,`customer_id`,`depost`,`balance`,`description`,`pay_status`,`stat`,`date_pay`,`emply`,`group_id`,`date_data`,`p_method`,`dep_id`,`rem_debt`,`zidi`,`jina_wakala`) VALUES ('$loan_id','$blanch_id','$comp_id','$customer_id','$new_depost','$sum_balance','CASH DEPOSIT','1','1','$day','$role','$group_id','$deposit_date','$p_method','$dep_id','$baki', '$zidi','$jina_wakala')");
      
  
        }
@@ -5132,10 +5137,11 @@ public function previous_transfor(){
 
     $hai_wateja = $this->queries->get_depositing_hai($comp_id);
     $sugu_wateja = $this->queries->get_depositing_sugu($comp_id);
+    $total_zidi_today = $this->queries->get_total_zidi_today($comp_id);
  	   //  echo "<pre>";
  	   // print_r($sugu_wateja);
  	   //       exit();
- 	$this->load->view('admin/cash_transaction',['cash'=>$cash,'sum_depost'=>$sum_depost,'sum_withdrawls'=>$sum_withdrawls,'blanch'=>$blanch,'sum_deducted'=>$sum_deducted,'sum_paid_penart'=>$sum_paid_penart,'account_deposit'=>$account_deposit,'default_list'=>$default_list,'toyal_default'=>$toyal_default,'withdrawal_account'=>$withdrawal_account,'total_code_no'=>$total_code_no,'deducted_fee'=>$deducted_fee,'penart_paid'=>$penart_paid,'miamala'=>$miamala,'total_miamala'=>$total_miamala,'hai_wateja'=>$hai_wateja,'sugu_wateja'=>$sugu_wateja]);
+ 	$this->load->view('admin/cash_transaction',['cash'=>$cash,'total_zidi_today'=> $total_zidi_today,'sum_depost'=>$sum_depost,'sum_withdrawls'=>$sum_withdrawls,'blanch'=>$blanch,'sum_deducted'=>$sum_deducted,'sum_paid_penart'=>$sum_paid_penart,'account_deposit'=>$account_deposit,'default_list'=>$default_list,'toyal_default'=>$toyal_default,'withdrawal_account'=>$withdrawal_account,'total_code_no'=>$total_code_no,'deducted_fee'=>$deducted_fee,'penart_paid'=>$penart_paid,'miamala'=>$miamala,'total_miamala'=>$total_miamala,'hai_wateja'=>$hai_wateja,'sugu_wateja'=>$sugu_wateja]);
  }
 
  public function cash_transaction_blanch(){

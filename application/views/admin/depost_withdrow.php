@@ -329,6 +329,30 @@
 
 <?php include('incs/footer.php'); ?>
 
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+    var paymentMethod = document.querySelector("select[name='p_method']");
+    var mobilePaymentFields = document.getElementById("mobilePaymentFields");
+    var jinaWakala = document.querySelector("input[name='jina_wakala']");
+    var withdrawalCharger = document.querySelector("input[name='zidi']");
+
+    paymentMethod.addEventListener("change", function () {
+        var selectedMethod = this.options[this.selectedIndex].text.trim().toUpperCase();
+
+        if (["M-PESA", "TIGO-PESA", "AIRTELMONEY"].includes(selectedMethod)) {
+            mobilePaymentFields.style.display = "flex";
+            jinaWakala.setAttribute("required", "required");
+            withdrawalCharger.setAttribute("required", "required");
+        } else {
+            mobilePaymentFields.style.display = "none";
+            jinaWakala.removeAttribute("required");
+            withdrawalCharger.removeAttribute("required");
+        }
+    });
+});
+
+</script>
+
  <div class="modal fade" id="addcontact1" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
@@ -393,11 +417,6 @@
                     <input type="text" class="form-control" value="<?php echo number_format($total_penart->total_penart - $total_deposit_penart->total_penart_paid); ?>.00" readonly style="color:red">     
                     </div>
                     <div class="col-md-6 col-6">
-                    <span>Deposit </span>
-                    <!-- <input type="number" class="form-control" name="depost" placeholder="Enter Deposit Amount" required>      -->
-                    <input x-mask:dynamic="$money($input)" name="depost" class="form-control">  
-                    </div>
-                    <div class="col-md-6 col-6">
                     <span>Select Account:</span>
                     <select type="number" class="form-control" name="p_method" required>
                         <option value="">---Select Account---</option>
@@ -406,6 +425,24 @@
                         <?php endforeach; ?>
                     </select>           
                     </div>
+                    
+                    <div class="col-md-6 col-6">
+                    <span>Deposit </span>
+                    <!-- <input type="number" class="form-control" name="depost" placeholder="Enter Deposit Amount" required>      -->
+                    <input x-mask:dynamic="$money($input)" name="depost" class="form-control">  
+                    </div>
+                    
+
+                    <div id="mobilePaymentFields" style="display: none;">
+    <div class="col-md-6 col-6">
+        <span> Wakala</span>
+        <input type="text" class="form-control" name="jina_wakala" placeholder="Jina la Wakala">
+    </div>
+    <div class="col-md-6 col-6">
+        <span>Zidi</span>
+        <input type="number" class="form-control" name="zidi" placeholder="ya kutolea">
+    </div>
+</div>
                     <input type="hidden" value="<?php echo $customer->customer_id; ?>" name="customer_id">
                     <input type="hidden" value="<?php echo $customer->comp_id; ?>" name="comp_id">
                     <input type="hidden" value="<?php echo $customer->blanch_id; ?>" name="blanch_id">

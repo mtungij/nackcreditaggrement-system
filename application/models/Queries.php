@@ -7805,6 +7805,33 @@ public function get_today_registered_customers_count($comp_id) {
     return $this->db->count_all_results('tbl_customer'); // Returns count directly
 }
 
+public function get_total_zidi_for_month($comp_id, $month = NULL, $year = NULL) {
+    if ($month === NULL) {
+        $month = date('m'); // Get current month
+    }
+    if ($year === NULL) {
+        $year = date('Y'); // Get current year
+    }
+
+    $this->db->select('SUM(zidi) AS total_zidi');
+    $this->db->from('tbl_pay');
+    $this->db->where('MONTH(date_data)', $month);
+    $this->db->where('YEAR(date_data)', $year);
+    $this->db->where('comp_id', $comp_id); // Filter by company ID
+
+    $query = $this->db->get();
+    return $query->row()->total_zidi ?? 0; // Return 0 if no result
+}
+
+public function get_total_zidi_today($comp_id) {
+    $this->db->select('SUM(zidi) AS total_zidi');
+    $this->db->from('tbl_pay');
+    $this->db->where('DATE(date_data)', date('Y-m-d')); // Filter by today's date
+    $this->db->where('comp_id', $comp_id); // Filter by company ID
+
+    $query = $this->db->get();
+    return $query->row()->total_zidi ?? 0; // Return 0 if no data
+}
 
 
 

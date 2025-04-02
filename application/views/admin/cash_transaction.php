@@ -283,9 +283,9 @@
                                          <td></td>
                                          <td></td>
                                          <td></td>
-                                         <td><b>JUMLA YA CODE NO</b></td>
+                                         <td><b>ZIDIO M-PESA</b></td>
                                          <td></td>
-                                         <td><b><?php echo number_format($total_code_no->total_interest); ?></b></td>
+                                         <td><b><?php echo number_format($total_zidi_today); ?></b></td>
                                          <td></td>
                                          <td></td>
                                          <td></td>

@@ -120,6 +120,21 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="col-lg-3 col-md-12">
+                    <div class="card top_counter currency_state">
+                        <div class="body">
+                        <div class="icon"><img src="https://www.wrraptheme.com/templates/lucid/html/assets/images/coin/ETH.svg" width="35" /></div>
+                            <div class="content">
+                           
+                                <div class="text"><strong>ZIDIO MPESA</strong></div>
+                                <h5 class="number"><?= number_format($total_zidi) ?></h5>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="col-lg-3 col-md-6">
                     <div class="card top_counter currency_state">
                         <div class="body">
@@ -142,19 +157,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="card top_counter currency_state">
-                    <a href="#" type="button" class="no-focus" data-toggle="popover" data-placement="top"  data-content="haya ni madeni ambayo hayajalipwa kwa muda wa miezi sita toka tarehe ya mwisho ya mkataba ">
-                        <div class="body">
-                                <div class="icon"><img src="https://www.wrraptheme.com/templates/lucid/html/assets/images/coin/ETC.svg" width="35" /></div>
-                            <div class="content">
-                                <div class="text"><strong>MIKOPO CHECHEFU</strong></div>
-                                <h5 class="number"><?= number_format($total_remain_amount) ?></h5>
-                            </div>
-                        </div>
-                        </a>
-                    </div>
-                </div>
+               
                 <div class="col-lg-3 col-md-12">
                     <div class="card top_counter currency_state">
                     <a href="#" type="button" class="no-focus" data-toggle="popover" title="Madeni sugu" data-placement="top"  data-content="haya ni madeni sugu ya jumla kwa matawi yote kwa muda wotee ">
