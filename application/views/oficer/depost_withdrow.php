@@ -339,7 +339,6 @@
     document.addEventListener("DOMContentLoaded", function () {
     var paymentMethod = document.querySelector("select[name='p_method']");
     var mobilePaymentFields = document.getElementById("mobilePaymentFields");
-    var jinaWakala = document.querySelector("input[name='jina_wakala']");
     var withdrawalCharger = document.querySelector("input[name='withdrawal_charger']");
 
     paymentMethod.addEventListener("change", function () {
@@ -446,16 +445,12 @@
 
                     </div>
                   
-                    <div id="mobilePaymentFields" style="display: none;">
+         <div id="mobilePaymentFields" style="display: none;">
     <div class="col-md-6 col-6">
         <span>Jina la Wakala</span>
         <input type="text" class="form-control" name="jina_wakala" placeholder="Enter Jina la Wakala">
     </div>
-    <div class="col-md-6 col-6">
-        <span>Withdrawal Charger</span>
-        <input type="number" class="form-control" name="withdrawal_charger" placeholder="Enter Withdrawal Charger">
-    </div>
-</div>
+  
                     <input type="hidden" value="<?php echo $customer->customer_id; ?>" name="customer_id">
                     <input type="hidden" value="<?php echo $customer->comp_id; ?>" name="comp_id">
                     <input type="hidden" value="<?php echo $customer->blanch_id; ?>" name="blanch_id">
