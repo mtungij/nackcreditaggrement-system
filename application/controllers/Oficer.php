@@ -2046,7 +2046,7 @@ public function create_withdrow_balance($customer_id){
     $this->form_validation->set_rules('method','method','required');
     $this->form_validation->set_rules('withdrow','withdrow','required');
     $this->form_validation->set_rules('loan_status','loan status','required');
-    // $this->form_validation->set_rules('code','Code','required');
+    $this->form_validation->set_rules('code','Code','required');
     $this->form_validation->set_rules('with_date','with date','required');
     $this->form_validation->set_rules('description','description','required');
     if ($this->form_validation->run() ) {
@@ -2059,7 +2059,7 @@ public function create_withdrow_balance($customer_id){
           $comp_id = $data['comp_id'];
           $description = $data['description'];
           $method = $data['method'];
-          // $new_code = $data['code'];
+          $new_code = $data['code'];
           $with_date = $data['with_date'];
           $loan_status = 'withdrawal';
           $new_balance = $withdrow_newbalance;
@@ -2176,7 +2176,7 @@ public function create_withdrow_balance($customer_id){
            
            $new_deducted = $deducted + $sum_total_loanFee;
               
-              if($new_code === $code){
+              if($new_code != $code){
              $this->session->set_flashdata('error','Loan Code is Invalid Please Try Again'); 
                }else{
 
@@ -5528,7 +5528,7 @@ $days_remain = $this->queries->get_loan_active_customer($customer_id);
 
         $loan_code = $this->queries->get_loanCustomerCode($customer_id);
         $code = $loan_code->code;
-        $phones = $loan_code->phone_no;
+        $phone = $loan_code->phone_no;
         $comp_id = $loan_code->comp_id;
         $compdata = $this->queries->get_companyData($comp_id);
         $comp_name=$compdata->comp_name;
@@ -5536,7 +5536,7 @@ $days_remain = $this->queries->get_loan_active_customer($customer_id);
 
          
        
-        $phone = '0'.substr($phones, 3,10);
+        // $phone = '0'.substr($phones, 3,10);
         // print_r($massage);
         //      exit();
        
