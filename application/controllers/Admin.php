@@ -10159,7 +10159,7 @@ public function sendsms($phone,$massage){
 	//$api_key = 'qFzd89PXu1e/DuwbwxOE5uUBn6';
 	//$curl = curl_init();
   $url = "https://sms-api.kadolab.com/api/send-sms";
-  $token = "16|QKnHLafMpXvah7gGXMY3E0jOjs9Urw7vUKmwDvQqe65546a6";
+  $token = "17|VoXjudLv0QQp51nG6x2MIuSFFYjhT4Ww8rPCwrtM27738bcc";
 
   $ch = curl_init($url);
   curl_setopt($ch, CURLOPT_POST, true);
