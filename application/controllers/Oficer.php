@@ -2796,7 +2796,13 @@ if ($remain_days == 0) {
     // '. Deni lako lililobaki kufikia leo tarehe '.$date.' ni TZS '.number_format($remain_loan).
     // '. Leo ni siku ya mwisho wa mkataba wako - '.$comp_name.'.';
 
-    $massage = 'Ndugu '.$full_name.', malipo yako ya '.number_format($new_balance).' yamepokelewa '.$date.'. Mpokeaji: '.$role.'. Deni lako ni '.number_format($remain_loan).'. Tarehe ya leo ni siku ya mwisho wa mkataba wako - '.$comp_name.'.';
+    $message = 'Habari ' . $full_name . 
+    ', malipo yako ya TSH ' . number_format($new_balance) . 
+    ' yamepokelewa leo ' . $date . '. ' . 
+    'Mpokeaji: ' . $role . '. ' . 
+    'Leo ni siku ya mwisho wa mkataba wako. Ikiwa bado utakuwa na deni, kiasi hicho kitaongezeka kutokana na ucheleweshaji. ' . 
+    'Asante kwa kushirikiana na ' . $comp_name . '.';
+
 
   
 
@@ -2811,7 +2817,11 @@ $full_name = ucwords(strtolower($full_name));
 $middle_name = ucwords(strtolower($middle_name));
 $last_name = ucwords(strtolower($last_name));
 
-$massage = 'Ndugu ' . $full_name . ' ' . $middle_name . ' ' . $last_name . ', umelipa TSH ' . number_format($new_balance) . ' leo tarehe ' . $date . ' - ' . $comp_name . '. Mpokeaji: ' . $role . '. Deni ni TSH ' . number_format($remain_loan) . '.';
+$massage = 'Habari ' . $full_name . ' ' . $middle_name . ' ' . $last_name . 
+           ', umelipa kiasi cha TSH ' . number_format($new_balance) . 
+           ' leo ' . $date . '. ' . 
+           'Asante kwa kufanya malipo kupitia ' . $comp_name . '. ' . 
+           'Mpokeaji: ' . $role . '.';
 
 
 
@@ -2821,7 +2831,13 @@ $massage = 'Ndugu ' . $full_name . ' ' . $middle_name . ' ' . $last_name . ', um
     // ' yamepokelewa tarehe '.$date.'. Tafadhali fahamu kuwa umechelewa kulipa na sasa unahesabika kama mdaiwa sugu. '.
     // 'Deni lako lililobaki ni TZS '.number_format($remain_loan).'. Tafadhali lipa haraka ili kuepuka hatua zaidi. - '.$comp_name.'.';
 
-    $massage = 'Ndugu '.$full_name.', umelipa '.number_format($new_balance).' leo '.$date.' - '.$comp_name.'. Mpokeaji: '.$role.'. Malipo yako yamechelewa. Lipa haraka TZS '.number_format($remain_loan).' kuepuka hatua zaidi.';
+    $massage = 'Habari ' . $full_name . 
+    ', umelipa kiasi cha TSH ' . number_format($new_balance) . 
+    ' leo ' . $date . '. ' . 
+    'Asante kwa kufanya malipo kupitia ' . $comp_name . '. ' . 
+    'Mpokeaji: ' . $role . '. ' . 
+    'Malipo yako yamechelewa. Tafadhali lipa mapema ili kuepuka ongezeko la deni kutokana na ucheleweshaji.';
+
 
 
    
@@ -2984,7 +3000,14 @@ $massage = 'Ndugu ' . $full_name . ' ' . $middle_name . ' ' . $last_name . ', um
     // ' yamepokelewa tarehe '.$date.'. Tafadhali fahamu kuwa umechelewa kulipa na sasa unahesabika kama mdaiwa sugu. '.
     // 'Deni lako lililobaki ni TZS '.number_format($remain_loan).'. Tafadhali lipa haraka ili kuepuka hatua zaidi. - '.$comp_name.'.';
 
-    $massage = 'Ndugu '.$full_name.', umelipa '.number_format($new_balance).' leo '.$date.' - '.$comp_name.'. Mpokeaji: '.$role.'. Malipo yako yamechelewa. Lipa haraka TZS '.number_format($remain_loan).' kuepuka hatua zaidi.';
+
+
+    $massage = 'Habari ' . $full_name . 
+    ', umelipa kiasi cha TSH ' . number_format($new_balance) . 
+    ' leo ' . $date . '. ' . 
+    'Asante kwa kufanya malipo kupitia ' . $comp_name . '. ' . 
+    'Mpokeaji: ' . $role . '. ' . 
+    'Malipo yako yamechelewa. Tafadhali lipa mapema ili kuepuka ongezeko la deni kutokana na ucheleweshaji.';
 
 
    
