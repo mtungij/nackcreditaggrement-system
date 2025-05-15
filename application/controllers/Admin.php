@@ -3040,7 +3040,11 @@ public function disburse($loan_id){
 	  $phone = $loan_datas->phone_no;
 
            //send sms function
-           $massage = $comp_name.' Imeingiza Mkopo Kiasi cha Tsh.'.$loan_aproved.' kwenye Acc Yako ' . $loan_codeID .' Kwa msaada zaidi Piga simu Namba '.$comp_phone;
+           $massage = $comp_name . 
+           ' imeingiza mkopo kiasi cha Tsh ' . number_format($loan_aproved, 0) . 
+           ' kwenye akaunti yako (' . $loan_codeID . '). ' . 
+           'Kwa msaada zaidi, piga simu namba 0626040829.';
+
         
         
                // print_r($massage);
@@ -5311,7 +5315,11 @@ public function previous_transfor(){
     $comp_phone = $compdata->comp_phone;
     $phone = $customer_data->phone_no;
 
-    $massage ='Tsh.'. number_format($depost) .' '. 'Iliyoingizwa Kimakosa Kwenye Mkopo wako'.' '. $comp_name . ' '.' Imetolewa' .' '. 'Kiasi Kilichobaki Kulipwa '.number_format($remain_loan).' ' . 'Kwa Msaada ' .''. $comp_phone;
+    $massage = 'Tsh ' . number_format($depost, 0) . 
+    ' iliyoingizwa kimakosa kwenye mkopo wako kutoka ' . $comp_name . 
+    ' imetolewa. Kiasi kilichobaki kulipwa ni Tsh ' . number_format($remain_loan, 0) . 
+    '. Kwa msaada zaidi, piga simu namba 0626040829.';
+
 
     $this->sendsms($phone,$massage);
 
@@ -7071,7 +7079,7 @@ echo $this->queries->fetch_loancustomer($this->input->post('customer_id'));
         $first_name = $data_sms->f_name;
         $midle_name = $data_sms->m_name;
         $last_name = $data_sms->l_name;
-        $massage = 'Ndugu, ' .$first_name . ' ' .$midle_name . ' ' .$last_name . ' ' .'Umelipa faini ya Tsh.'. number_format($penart_paid) . ' '.$comp_name .' kwa msaada 0762178026';
+        $massage = 'Ndugu, ' .$first_name . ' ' .$midle_name . ' ' .$last_name . ' ' .'Umelipa faini ya Tsh.'. number_format($penart_paid) . ' '.$comp_name .' kwa msaada 0626040829';
         
 			 // print_r($username);
 			 //     exit();

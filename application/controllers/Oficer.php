@@ -1919,8 +1919,13 @@ public function modify_sponser($sp_id,$customer_id){
             // print_r($data);
             //  echo "</pre>";
             //   exit();
-           //send sms function
-           $massage = $comp_name.' Imeingiza Mkopo Kiasi cha Tsh.'.$remain_balance.' kwenye Acc Yako ' . $loan_codeID .' Namba ya Siri Ni' .$code. ' Kwa msaada zaidi piga simu Namba '.$comp_phone;
+           //send sms function    
+           $massage = $comp_name . 
+           ' imeingiza mkopo kiasi cha Tsh ' . number_format($remain_balance, 0) . 
+           ' kwenye akaunti yako (' . $loan_codeID . '). ' . 
+           'Namba ya siri ni: ' . $code . '. ' . 
+           'Kwa msaada zaidi, piga simu namba 0626040829.';
+
          
                // print_r($massage);
                //     exit();
@@ -2808,20 +2813,20 @@ if ($remain_days == 0) {
 
 } elseif ($remain_days > 0) {
     // Mteja amelipa kabla ya mkataba kuisha
-    // $massage = 'Mpendwa '.$full_name.', tumepokea malipo yako ya TZS '.number_format($new_balance).
-    // ' tarehe '.$date.'. Deni lako lililobaki kufikia leo ni TZS '.number_format($remain_loan).'. '.
-    // 'Umebakiwa na siku '.$remain_days.' kabla ya mkataba kuisha tarehe '.date("d/m/Y", strtotime($siku_baki)).'. '.
-    // 'Asante kwa kufanya malipo - '.$comp_name.'.';
+    $massage = 'Mpendwa ' . $full_name . ', tumepokea malipo yako ya TZS ' . number_format($new_balance) .
+    ' tarehe ' . $date . '. Deni lako lililobaki kufikia leo ni TZS ' . number_format($remain_loan) . '. ' .
+    'Umebakiwa na siku ' . $remain_days . ' kabla ya mkataba kuisha tarehe ' . date("d/m/Y", strtotime($siku_baki)) . '. ' .
+    'Asante kwa kufanya malipo - ' . $comp_name . '.';
 
 $full_name = ucwords(strtolower($full_name));
 $middle_name = ucwords(strtolower($middle_name));
 $last_name = ucwords(strtolower($last_name));
 
-$massage = 'Habari ' . $full_name . ' ' . $middle_name . ' ' . $last_name . 
-           ', umelipa kiasi cha TSH ' . number_format($new_balance) . 
-           ' leo ' . $date . '. ' . 
-           'Asante kwa kufanya malipo kupitia ' . $comp_name . '. ' . 
-           'Mpokeaji: ' . $role . '.';
+// $massage = 'Habari ' . $full_name . ' ' . $middle_name . ' ' . $last_name . 
+//            ', umelipa kiasi cha TSH ' . number_format($new_balance) . 
+//            ' leo ' . $date . '. ' . 
+//            'Asante kwa kufanya malipo kupitia ' . $comp_name . '. ' . 
+//            'Mpokeaji: ' . $role . '.';
 
 
 
@@ -2834,9 +2839,11 @@ $massage = 'Habari ' . $full_name . ' ' . $middle_name . ' ' . $last_name .
     $massage = 'Habari ' . $full_name . 
     ', umelipa kiasi cha TSH ' . number_format($new_balance) . 
     ' leo ' . $date . '. ' . 
+    'Deni lililobaki ni TSH ' . number_format($remain_loan) . '. ' .
     'Asante kwa kufanya malipo kupitia ' . $comp_name . '. ' . 
     'Mpokeaji: ' . $role . '. ' . 
     'Malipo yako yamechelewa. Tafadhali lipa mapema ili kuepuka ongezeko la deni kutokana na ucheleweshaji.';
+
 
 
 
